@@ -1,0 +1,178 @@
+.btn:hover,
+.btn:focus,
+.btn:active{
+    outline: 0 !important;
+}
+/* entire container, keeps perspective */
+.flipcard-container {
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+    margin-bottom: 30px;
+}
+/* flip the pane when hovered */
+.flipcard-container:not(.manual-flip):hover .flipcard,
+.flipcard-container.hover.manual-flip .flipcard{
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+
+.flipcard-container.static:hover .flipcard,
+.flipcard-container.static.hover .flipcard {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+/* flip speed goes here */
+.flipcard {
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    -o-transition: -o-transform .5s;
+    transition: transform .5s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.flipcard-front, .flipcard-back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+/* front pane, placed above back */
+.flipcard-front {
+    z-index: 2;
+}
+
+/* back, initially hidden pane */
+.flipcard-back {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+    z-index: 3;
+}
+
+.flipcard-back .btn-simple{
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+}
+
+/*        Style       */
+.flipcard{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+.flipcard-container, .flipcard-front, .flipcard-back {
+    width: 100%;
+    height: 250px;
+    border-radius: 4px;
+}
+.flipcard-back {
+    padding: 10px;
+}
+.flipcard .flipcard-cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+.flipcard .flipcard-img{
+    border-radius: 50%;
+    display: block;
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+}
+.flipcard .flipcard-img img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+.flipcard .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+.flipcard .content .main {
+    min-height: 160px;
+}
+.flipcard .back .content .main {
+    height: 215px;
+}
+.flipcard .name {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+.flipcard h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+.flipcard .profession{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.flipcard .footer {
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    margin: 30px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+.flipcard .footer .social-links{
+    font-size: 18px;
+}
+.flipcard .footer .social-links a{
+    margin: 0 7px;
+}
+.flipcard .footer .btn-simple{
+    margin-top: -6px;
+}
+.flipcard .header {
+    padding: 15px 20px;
+    height: 90px;
+}
+
+/*       Fix bug for IE      */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .flipcard-front, .flipcard-back{
+        -ms-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+
+    .flipcard-back {
+        visibility: hidden;
+        -ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+    }
+    .flipcard-front{
+        z-index: 4;
+    }
+    .flipcard-container:not(.manual-flip):hover .flipcard-back,
+    .flipcard-container.manual-flip.hover .flipcard-back{
+        z-index: 5;
+        visibility: visible;
+    }
+}
