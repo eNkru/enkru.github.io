@@ -2,3 +2,13 @@
 p.social a.linkedin {
   background-color: #0e76a8;
 }
+
+.showcase {
+  margin-bottom: 30px;
+}
+
+.showcase img {
+  width: 100%;
+  height: 220px;
+  border-radius: 4px;
+}
