@@ -77,13 +77,11 @@
 /*        Style       */
 .flipcard{
     background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 4px;
     color: #444444;
 }
 .flipcard-container, .flipcard-front, .flipcard-back {
     width: 100%;
     height: 250px;
-    border-radius: 4px;
 }
 .flipcard-back {
     padding: 10px;
@@ -91,7 +89,6 @@
 .flipcard .flipcard-cover{
     height: 105px;
     overflow: hidden;
-    border-radius: 4px 4px 0 0;
 }
 .flipcard .flipcard-img{
     border-radius: 50%;
