@@ -12,3 +12,7 @@ p.social a.linkedin {
   height: 220px;
   object-fit: cover;
 }
+
+.scroll-indicator {
+  font-size: 24px;
+}
