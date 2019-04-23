@@ -31,9 +31,9 @@ function onepage() {
 function slick() {
   $(".showcase").slick({
     infinite: true,
-    speed: 500,
-    fade: true,
-    cssEase: 'linear',
+    speed: 2000,
+    fade: false,
+    cssEase: 'ease-in-out',
     autoplay: true,
     autoplaySpeed: 5000
   })
