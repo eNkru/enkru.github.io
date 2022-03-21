@@ -1,5 +1,3 @@
-# My online portfolio
+# Online Portfolio
 
-The single page online portfolio for myself.
-
-https://enkru.github.io/
+The online portfolio for [Howard Ju](https://enkru.github.io/) (Myself).
