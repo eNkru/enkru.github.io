@@ -17,11 +17,13 @@ export function ShowcaseCard({ title, images, url }: ShowcaseCardProps) {
         <div className="flex">
           {images.map((src, i) => (
             <div key={i} className="flex-shrink-0 w-full">
-              <img
-                src={src}
-                alt={`${title} screenshot ${i + 1}`}
-                className="w-full h-40 object-cover"
-              />
+              <div className="aspect-video bg-gray-900">
+                <img
+                  src={src}
+                  alt={`${title} screenshot ${i + 1}`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           ))}
         </div>
