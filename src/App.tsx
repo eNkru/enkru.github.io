@@ -5,12 +5,11 @@ import { SectionDots } from './components/SectionDots'
 import { Intro } from './sections/Intro'
 import { About } from './sections/About'
 import { Skills } from './sections/Skills'
-import { SkillCloud } from './sections/SkillCloud'
 import { Showcases } from './sections/Showcases'
 import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
 
-const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Skill Cloud', 'Showcases', 'Experience', 'Contact']
+const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Showcases', 'Experience', 'Contact']
 const SECTION_COUNT = SECTION_LABELS.length
 const MOBILE_BREAKPOINT = 1000
 
@@ -24,7 +23,6 @@ const SECTIONS = [
   <Intro />,
   <About />,
   <Skills />,
-  <SkillCloud />,
   <Showcases />,
   <Experience />,
   <Contact />,
