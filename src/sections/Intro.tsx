@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 
 const BG_IMAGES = [
   '/img/background/1.jpg',
+  '/img/background/1.1.jpg',
   '/img/background/2.jpg',
-  '/img/background/3.jpg',
+  '/img/background/2.1.jpg',
 ]
 
 export function Intro() {
