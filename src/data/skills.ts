@@ -7,11 +7,14 @@ export const skills: SkillCategory[] = [
   {
     category: "Backend & Integration",
     items: [
-      "Java / J2EE, Spring, Spring Boot",
-      "REST APIs & Microservices",
-      "AWS Cloud & Docker",
+      "Java / SpringBoot / Quarkus",
+      "Node.JS / AWS Lambda / Serverless",
+      "REST APIs / Microservices",
+      "AWS Cloud / Docker / Kubernetes",
       "JPA / Hibernate / JDBC",
-      "MongoDB, Cassandra (NoSQL)",
+      "MongoDB / Cassandra (NoSQL)",
+      "Messaging / Queue / Topics",
+      "Reactive Programming / Asynchronous Programming",
       "ESB / BPS / API Gateway",
       "AEM / JCR / Adobe CMS",
       "Performance Tuning & Profiling",
@@ -20,13 +23,24 @@ export const skills: SkillCategory[] = [
   {
     category: "Frontend",
     items: [
-      "React / Redux",
-      "Ember.js",
+      "React.JS / Redux.JS",
+      "Ember.JS / Vue.JS",
       "AngularJS / MEAN Stack",
-      "HTML5 / ES7+",
+      "HTML5 / SPA / ",
       "CSS / SASS / SCSS & Animations",
       "Bootstrap, Google MD, Semantic UI",
       "jQuery",
+    ],
+  },
+  {
+    category: "Artificial Intelligence",
+    items: [
+      "Vibe Coding",
+      "Spec Driven Development",
+      "Prompt Engineering",
+      "LLM Integration (OpenAI, Claude, Gemini)",
+      "RAG (Retrieval-Augmented Generation)",
+      "MCP (Model Context Protocol)",
     ],
   },
   {
