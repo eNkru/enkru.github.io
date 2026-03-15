@@ -36,8 +36,8 @@ export function Intro() {
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-5xl font-bold mb-4 tracking-wide">Howard Ju</h1>
-        <p className="text-xl font-light tracking-widest uppercase">
+        <h1 className="text-3xl sm:text-5xl font-bold mb-4 tracking-wide">Howard Ju</h1>
+        <p className="text-sm sm:text-xl font-light tracking-widest uppercase">
           Open minded consultant. Solution analysis | design | implementation
         </p>
       </div>

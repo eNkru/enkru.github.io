@@ -7,9 +7,9 @@ export function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_ID)
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-center bg-gray-800 text-white px-8">
+    <div className="w-screen min-h-screen flex flex-col items-center justify-center bg-gray-800 text-white px-6 py-12">
       <div className="max-w-lg w-full">
-        <h2 className="text-4xl font-bold text-center mb-8">Contact</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8">Contact</h2>
 
         {state.succeeded ? (
           <p className="text-green-400 text-center text-lg mb-6">

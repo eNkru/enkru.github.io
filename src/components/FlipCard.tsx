@@ -14,7 +14,7 @@ export function FlipCard({ cover, logo, title, role, period, description }: Flip
 
   return (
     <div
-      className="relative w-full h-56 cursor-pointer"
+      className="relative w-full h-44 sm:h-56 cursor-pointer"
       style={{ perspective: '1000px' }}
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
