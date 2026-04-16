@@ -9,7 +9,7 @@ export function Contact() {
 
   return (
     <div className="w-screen min-h-screen flex flex-col items-center justify-center bg-transparent text-slate-100 px-6 py-12 relative">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -18,7 +18,7 @@ export function Contact() {
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Contact</h2>
 
         {state.succeeded ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center py-8"
@@ -86,11 +86,8 @@ export function Contact() {
         )}
 
         <div className="flex justify-center gap-6 mt-10">
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-slate-400 hover:text-blue-400 transform hover:-translate-y-1 transition-all duration-300">
+          <a href="https://www.linkedin.com/in/huawuju/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-slate-400 hover:text-blue-400 transform hover:-translate-y-1 transition-all duration-300">
             <Linkedin size={24} />
-          </a>
-          <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-slate-400 hover:text-blue-500 transform hover:-translate-y-1 transition-all duration-300">
-            <Facebook size={24} />
           </a>
           <a href="mailto:enkru2000@hotmail.com" aria-label="Email" className="text-slate-400 hover:text-purple-400 transform hover:-translate-y-1 transition-all duration-300">
             <Mail size={24} />
