@@ -11,7 +11,7 @@ export function ShowcaseCard({ title, images, url }: ShowcaseCardProps) {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000 })])
 
   return (
-    <div className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:-translate-y-1 transition-all duration-300 flex flex-col group">
+    <div className="rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-300 flex flex-col group">
       {/* Carousel */}
       <div className="overflow-hidden relative" ref={emblaRef}>
         <div className="flex">
@@ -32,7 +32,7 @@ export function ShowcaseCard({ title, images, url }: ShowcaseCardProps) {
       </div>
 
       {/* Footer */}
-      <div className="p-5 flex items-center justify-between mt-auto bg-gradient-to-b from-transparent to-white/5">
+      <div className="p-5 flex items-center justify-between mt-auto">
         <h3 className="text-slate-100 font-bold text-sm tracking-wide">{title}</h3>
         {url && (
           <a
