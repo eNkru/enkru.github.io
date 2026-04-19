@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { SocialLinks } from '../components/SocialLinks'
 
 const BG_IMAGES = [
   '/img/background/1.jpg',
@@ -28,62 +29,81 @@ export function Intro() {
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-          style={{ opacity: i === bgIndex ? 0.6 : 0 }}
+          style={{ opacity: i === bgIndex ? 0.4 : 0 }}
         />
       ))}
 
-      {/* Modern gradient overlay / vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#0a0a0a]/60 to-[#0a0a0a] pointer-events-none" />
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/70 to-[#0a0a0a] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/30 pointer-events-none" />
 
-      {/* Content wrapper with glassmorphism */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 text-center px-8 md:px-16 py-12 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl"
-      >
-        <motion.h1 
-           initial={{ opacity: 0, scale: 0.95 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.8, delay: 0.2 }}
-           className="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 text-transparent bg-clip-text"
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-6">
+        {/* Profile photo with animated ring */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0, ease: 'easeOut' }}
+          className="relative mb-8"
+        >
+          {/* Outer glow ring */}
+          <div className="absolute inset-[-6px] rounded-full bg-gradient-to-r from-blue-500/40 via-indigo-500/40 to-purple-500/40 blur-md animate-pulse" />
+          {/* Inner border ring */}
+          <div className="absolute inset-[-2px] rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400" />
+          <img
+            src="/img/aboutme2.jpg"
+            alt="Howard Ju"
+            className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full object-cover border-[3px] border-[#0a0a0a]"
+          />
+        </motion.div>
+
+        {/* Name */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-3"
         >
           Howard Ju
         </motion.h1>
-        <motion.p 
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ duration: 0.8, delay: 0.4 }}
-           className="text-sm sm:text-base md:text-lg font-medium text-slate-300 tracking-[0.2em] uppercase leading-relaxed max-w-2xl mx-auto"
-        >
-          Open minded consultant <span className="hidden sm:inline">&bull;</span><br className="sm:hidden" /> Solution analysis &amp; design &bull; Implementation
-        </motion.p>
-      </motion.div>
 
-      {/* Scroll indicator arrow */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 text-white/50 animate-bounce"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="rotate-90 lg:rotate-0"
-          aria-label="Scroll to next section"
+        {/* Accent line */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+          className="w-16 h-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-5"
+        />
+
+        {/* Role / tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+          className="text-sm sm:text-base md:text-lg font-light text-slate-300/90 tracking-[0.25em] uppercase max-w-xl leading-relaxed"
         >
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
-      </motion.div>
+          Open minded consultant
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+          className="text-xs sm:text-sm md:text-base font-medium text-slate-400 tracking-[0.2em] uppercase mt-1.5"
+        >
+          Solution analysis &amp; design &bull; Implementation
+        </motion.p>
+
+        {/* Social links */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55, ease: 'easeOut' }}
+          className="mt-8"
+        >
+          <SocialLinks />
+        </motion.div>
+
+      </div>
     </div>
   )
 }
-
