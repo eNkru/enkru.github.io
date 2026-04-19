@@ -103,6 +103,22 @@ export function Intro() {
           <SocialLinks />
         </motion.div>
 
+        {/* Navigation hint */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.75, ease: 'easeOut' }}
+          className="mt-12 flex flex-col items-center gap-2"
+        >
+          <div className="flex items-center gap-3 text-white/25">
+            <span className="text-[10px] tracking-[0.25em] uppercase font-medium hidden sm:inline">Scroll</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            <span className="text-[10px] tracking-[0.25em] uppercase font-medium sm:hidden">Swipe</span>
+          </div>
+          <span className="text-[10px] tracking-[0.2em] uppercase font-medium text-white/15 hidden sm:inline">or use the dots to navigate</span>
+        </motion.div>
+
       </div>
     </div>
   )
