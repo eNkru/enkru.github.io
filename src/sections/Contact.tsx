@@ -1,5 +1,6 @@
 import { useForm, ValidationError } from '@formspree/react'
 import { motion } from 'framer-motion'
+import { User, Mail, MessageSquare } from 'lucide-react'
 import { SocialLinks } from '../components/SocialLinks'
 
 const FORMSPREE_ID = 'xyzpanom'
@@ -20,11 +21,10 @@ export function Contact() {
           Contact
         </motion.h2>
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-12 h-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mx-auto mb-10"
+          className="w-14 h-0.5 rounded-full bg-gradient-to-r from-pink-400 to-rose-500 mx-auto mb-10 origin-center"
         />
 
         {state.succeeded ? (
@@ -52,40 +52,49 @@ export function Contact() {
             className="space-y-5"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1">Name</label>
+              <label htmlFor="name" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
+                <User size={14} className="text-slate-500" />
+                Name
+              </label>
               <input
                 id="name"
                 type="text"
                 name="name"
                 required
                 placeholder="John Doe"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40 transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all"
               />
               <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1">Email</label>
+              <label htmlFor="email" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
+                <Mail size={14} className="text-slate-500" />
+                Email
+              </label>
               <input
                 id="email"
                 type="email"
                 name="email"
                 required
                 placeholder="john@example.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40 transition-all"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all"
               />
               <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1">Message</label>
+              <label htmlFor="message" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
+                <MessageSquare size={14} className="text-slate-500" />
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
                 required
                 placeholder="Let's build something great together..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40 transition-all resize-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all resize-none"
               />
               <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
             </div>
@@ -95,7 +104,7 @@ export function Contact() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={state.submitting}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 text-white font-bold py-3.5 rounded-xl shadow-[0_4px_15px_rgba(59,130,246,0.2)] hover:shadow-[0_6px_20px_rgba(59,130,246,0.3)] transition-all"
+              className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 disabled:opacity-50 text-white font-bold py-3.5 rounded-xl shadow-[0_4px_15px_rgba(236,72,153,0.2)] hover:shadow-[0_6px_20px_rgba(236,72,153,0.3)] transition-all"
             >
               {state.submitting ? 'Sending...' : 'Send Message'}
             </motion.button>

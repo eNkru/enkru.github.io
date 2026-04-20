@@ -26,7 +26,7 @@ export const skills: SkillCategory[] = [
       "React.JS / Redux.JS",
       "Ember.JS / Vue.JS",
       "AngularJS / MEAN Stack",
-      "HTML5 / SPA / ",
+      "HTML5 / SPA",
       "CSS / SASS / SCSS & Animations",
       "Bootstrap, Google MD, Semantic UI",
       "jQuery",

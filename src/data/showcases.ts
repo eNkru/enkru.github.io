@@ -3,6 +3,7 @@ export interface Showcase {
   title: string
   images: string[]
   url: string
+  description?: string
 }
 
 export const showcases: Showcase[] = [
@@ -15,6 +16,7 @@ export const showcases: Showcase[] = [
       "/img/showcases/1News-3.png",
     ],
     url: "https://1news.co.nz",
+    description: "Led the One News digital team, delivering real-time news experiences to millions of New Zealanders.",
   },
   {
     id: "mercury-website",
@@ -24,6 +26,7 @@ export const showcases: Showcase[] = [
       "/img/showcases/Mercury-2.png",
     ],
     url: "https://www.mercury.co.nz",
+    description: "Built Mercury's public website and integrated energy service APIs for customer-facing platforms.",
   },
   {
     id: "nztd",
@@ -33,6 +36,7 @@ export const showcases: Showcase[] = [
       "/img/showcases/NZTD-2.png",
     ],
     url: "https://www.travellerdeclaration.govt.nz/",
+    description: "Developed the digital traveller declaration system used by thousands of international visitors.",
   },
   {
     id: "xero",
@@ -42,6 +46,7 @@ export const showcases: Showcase[] = [
       "/img/showcases/Xero-2.png",
     ],
     url: "https://www.xero.com/",
+    description: "Enhanced Xero's website experience, improving performance and user interface interactions.",
   },
   {
     id: "sky",
@@ -50,12 +55,14 @@ export const showcases: Showcase[] = [
       "/img/showcases/Sky-1.png",
       "/img/showcases/Sky-2.png",
     ],
-    url: "https://www.xero.com/",
+    url: "https://www.sky.co.nz/",
+    description: "Built and maintained SKY TV's public-facing website and service integrations.",
   },
   {
     id: "ember-material-table",
     title: "Ember Material Table",
     images: ["/img/showcases/ember-material-table.png"],
     url: "https://enkru.github.io/ember-material-table",
+    description: "Open-source Material Design data table component for Ember.js with sorting, pagination and filtering.",
   },
 ]
