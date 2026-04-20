@@ -16,11 +16,10 @@ export function Showcases() {
           Showcases
         </motion.h2>
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-80px' }}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-12 h-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mx-auto mb-12"
+          className="w-28 h-0.5 rounded-full bg-gradient-to-r from-amber-400 via-rose-400 to-pink-500 mx-auto mb-12 origin-center"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

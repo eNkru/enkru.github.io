@@ -1,9 +1,28 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-80px' } as const,
+}
+
+function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+  const motionValue = useMotionValue(0)
+  const spring = useSpring(motionValue, { duration: 1200, bounce: 0 })
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (inView) motionValue.set(target)
+  }, [inView, motionValue, target])
+
+  useEffect(() => {
+    return spring.on('change', (v) => setDisplay(Math.round(v)))
+  }, [spring])
+
+  return <span ref={ref}>{display}{suffix}</span>
 }
 
 export function About() {
@@ -20,11 +39,11 @@ export function About() {
             About Me
           </motion.h2>
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-12 h-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400"
+            className="w-20 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 origin-left"
           />
 
           <div className="space-y-4">
@@ -51,46 +70,55 @@ export function About() {
             </motion.p>
           </div>
 
-          {/* Quick stats */}
+          {/* Quick stats with animated counters */}
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex gap-8 pt-4"
+            className="flex gap-6 pt-4"
           >
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">20+</div>
-              <div className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider mt-1">Years</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">8</div>
-              <div className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider mt-1">Companies</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">6</div>
-              <div className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider mt-1">Sectors</div>
-            </div>
+            {[
+              { value: 20, suffix: '+', label: 'Years', color: 'from-cyan-400 to-blue-500' },
+              { value: 8, suffix: '', label: 'Companies', color: 'from-blue-400 to-indigo-500' },
+              { value: 6, suffix: '', label: 'Sectors', color: 'from-indigo-400 to-purple-500' },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="flex-1 text-center p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]"
+              >
+                <div className={`text-2xl sm:text-3xl font-extrabold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                </div>
+                <div className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider mt-1">{stat.label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* Profile photo */}
+        {/* Decorative code-style accent (replaces duplicate profile photo) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.85 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          whileHover={{ scale: 1.03 }}
-          className="flex-shrink-0"
+          className="flex-shrink-0 hidden md:block"
         >
-          <div className="relative">
-            {/* Outer glow ring */}
-            <div className="absolute inset-[-6px] rounded-full bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-purple-500/30 blur-lg animate-pulse" />
-            {/* Inner border ring */}
-            <div className="absolute inset-[-2px] rounded-full bg-gradient-to-r from-blue-400/60 via-indigo-400/60 to-purple-400/60" />
-            <img
-              src="/img/aboutme2.jpg"
-              alt="Profile photo"
-              className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-full object-cover border-[3px] border-[#0a0a0a]"
-            />
+          <div className="relative w-64 sm:w-72 rounded-2xl border border-white/10 bg-white/[0.03] p-5 font-mono text-sm leading-relaxed shadow-2xl shadow-blue-500/5">
+            {/* Window dots */}
+            <div className="flex gap-1.5 mb-4">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+            </div>
+            <div className="text-slate-500">{'//'} whoami</div>
+            <div><span className="text-purple-400">const</span> <span className="text-cyan-300">developer</span> <span className="text-slate-500">=</span> {'{'}</div>
+            <div className="pl-4"><span className="text-blue-300">name</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Howard Ju'</span><span className="text-slate-500">,</span></div>
+            <div className="pl-4"><span className="text-blue-300">role</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Full Stack Dev'</span><span className="text-slate-500">,</span></div>
+            <div className="pl-4"><span className="text-blue-300">location</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Auckland, NZ'</span><span className="text-slate-500">,</span></div>
+            <div className="pl-4"><span className="text-blue-300">passion</span><span className="text-slate-500">:</span> <span className="text-amber-300">'AI × Dev'</span><span className="text-slate-500">,</span></div>
+            <div>{'}'}</div>
+            <div className="mt-2 text-slate-500">{'//'} always learning 🚀</div>
+            {/* Subtle glow */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           </div>
         </motion.div>
       </div>

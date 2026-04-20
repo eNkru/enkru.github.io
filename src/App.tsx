@@ -47,7 +47,18 @@ function App() {
     return (
       <div className="w-screen overflow-y-auto">
         {SECTIONS.map((section, i) => (
-          <div key={SECTION_LABELS[i]}>{section}</div>
+          <div
+            key={SECTION_LABELS[i]}
+            className={`relative ${i < SECTIONS.length - 1 ? 'pb-4' : ''}`}
+          >
+            {section}
+            {/* Section separator for mobile */}
+            {i < SECTIONS.length - 1 && (
+              <div className="flex items-center justify-center py-6">
+                <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+              </div>
+            )}
+          </div>
         ))}
       </div>
     )
