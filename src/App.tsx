@@ -8,9 +8,10 @@ import { Skills } from './sections/Skills'
 import { Showcases } from './sections/Showcases'
 import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
+import { GitHubShowcase } from './sections/GitHubShowcase'
 import { isCompactViewport } from './utils/viewport'
 
-const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Showcases', 'Experience', 'Contact']
+const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Showcases', 'Open Source', 'Experience', 'Contact']
 const SECTION_COUNT = SECTION_LABELS.length
 const slideTransition = {
   type: 'tween' as const,
@@ -23,6 +24,7 @@ const SECTIONS = [
   <About />,
   <Skills />,
   <Showcases />,
+  <GitHubShowcase />,
   <Experience />,
   <Contact />,
 ]
