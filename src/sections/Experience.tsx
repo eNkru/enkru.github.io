@@ -3,7 +3,7 @@ import { experience } from '../data/experience'
 
 export function Experience() {
   return (
-    <div className="w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden scroll-fade-y scroll-fade-shadow flex items-start justify-center bg-[#0a0a0a] text-slate-100 px-6 py-16">
+    <div className="w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden scroll-fade-y flex items-start justify-center bg-[#0a0a0a] text-slate-100 px-6 py-16">
       <div className="max-w-4xl w-full">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
