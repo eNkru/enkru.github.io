@@ -8,11 +8,10 @@ import { Skills } from './sections/Skills'
 import { Showcases } from './sections/Showcases'
 import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
+import { isCompactViewport } from './utils/viewport'
 
 const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Showcases', 'Experience', 'Contact']
 const SECTION_COUNT = SECTION_LABELS.length
-const MOBILE_BREAKPOINT = 1000
-
 const slideTransition = {
   type: 'tween' as const,
   ease: 'easeInOut' as const,
@@ -30,19 +29,19 @@ const SECTIONS = [
 
 function App() {
   const [currentSection, setCurrentSection] = useState(0)
-  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT)
+  const [isCompact, setIsCompact] = useState(isCompactViewport())
 
-  useHorizontalScroll(SECTION_COUNT, currentSection, setCurrentSection)
+  useHorizontalScroll(SECTION_COUNT, currentSection, setCurrentSection, isCompact)
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+      setIsCompact(isCompactViewport())
     }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  if (isMobile) {
+  if (isCompact) {
     return (
       <div className="w-screen overflow-y-auto">
         {SECTIONS.map((section, i) => (
