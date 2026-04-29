@@ -5,3 +5,4 @@ dist/
 \.kiro/
 \.idea/
 \.vscode/
+.DS_Store
