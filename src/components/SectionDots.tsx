@@ -12,7 +12,7 @@ export function SectionDots({ current, onChange, labels }: SectionDotsProps) {
 
   return (
     <nav
-      className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-50"
+      className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50"
       aria-label="Section navigation"
     >
       {labels.map((label, i) => (
@@ -22,30 +22,33 @@ export function SectionDots({ current, onChange, labels }: SectionDotsProps) {
           onMouseEnter={() => setHoveredIndex(i)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          {/* Tooltip label */}
+          {/* HUD tooltip label */}
           <AnimatePresence>
             {hoveredIndex === i && (
               <motion.span
-                initial={{ opacity: 0, x: 8 }}
+                initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 8 }}
-                transition={{ duration: 0.15 }}
-                className="absolute right-6 whitespace-nowrap text-xs font-medium text-slate-300 bg-white/10 backdrop-blur-sm border border-white/10 rounded-md px-2.5 py-1 pointer-events-none"
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.12 }}
+                className="absolute right-8 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.2em] text-accent bg-background/90 border border-accent/40 px-3 py-1.5 pointer-events-none shadow-[var(--shadow-neon-sm)]"
+                style={{ clipPath: 'var(--clip-chamfer-sm)' }}
               >
+                <span className="text-muted-foreground mr-1.5">{String(i).padStart(2, '0')}</span>
                 {label}
               </motion.span>
             )}
           </AnimatePresence>
 
+          {/* HUD marker */}
           <button
             onClick={() => onChange(i)}
             aria-label={`Go to ${label}`}
-            className={`rounded-full transition-all duration-300 ${
+            className={`transition-all duration-200 ${
               i === current
-                ? 'bg-white w-3 h-3 shadow-[0_0_8px_rgba(255,255,255,0.3)]'
-                : 'bg-white/40 w-2 h-2 self-center hover:bg-white/60 hover:w-2.5 hover:h-2.5'
-            }`
-            }
+                ? 'w-3 h-3 bg-accent border border-accent shadow-[var(--shadow-neon)] rotate-45'
+                : 'w-2 h-2 bg-border border border-border hover:border-accent/60 hover:bg-accent/20 hover:shadow-[var(--shadow-neon-sm)]'
+            }`}
+            style={{ clipPath: 'var(--clip-chamfer-sm)' }}
           />
         </div>
       ))}

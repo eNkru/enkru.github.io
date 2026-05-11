@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 const COOLDOWN_MS = 800
-// Sub-pixel fudge factor to account for browser rounding when comparing
-// scroll positions against scrollHeight/clientHeight boundaries.
+const BOUNDARY_SETTLE_MS = 600
 const SUBPIXEL_THRESHOLD = 1
 
-/** Check whether an element can still scroll in the given deltaY direction. */
 function canElementScroll(element: HTMLElement, deltaY: number): boolean {
   if (element.scrollHeight <= element.clientHeight) return false
   if (deltaY > 0) {
@@ -17,7 +15,6 @@ function canElementScroll(element: HTMLElement, deltaY: number): boolean {
   return false
 }
 
-/** Walk up the DOM from `target` to find the nearest scrollable ancestor. */
 function findScrollableAncestor(target: EventTarget | null): HTMLElement | null {
   if (!(target instanceof Element)) return null
   let node: Element | null = target
@@ -39,12 +36,10 @@ export function useHorizontalScroll(
   disabled = false
 ): void {
   const cooldownRef = useRef(false)
+  const boundaryHitRef = useRef(0) // timestamp of first boundary contact
   const touchStartXRef = useRef<number | null>(null)
-  // Keep a ref to current so event handlers always see the latest value
   const currentRef = useRef(current)
   currentRef.current = current
-  // Use a ref for disabled to avoid tearing down / re-attaching all listeners
-  // every time the viewport switches between compact and full layout.
   const disabledRef = useRef(disabled)
   disabledRef.current = disabled
 
@@ -68,7 +63,32 @@ export function useHorizontalScroll(
 
     const handleWheel = (e: WheelEvent) => {
       const scrollableAncestor = findScrollableAncestor(e.target)
-      if (scrollableAncestor && canElementScroll(scrollableAncestor, e.deltaY)) return
+
+      if (scrollableAncestor) {
+        // Still has room to scroll internally — let browser handle it
+        if (canElementScroll(scrollableAncestor, e.deltaY)) {
+          boundaryHitRef.current = 0 // reset — we're scrolling freely
+          return
+        }
+
+        // At the boundary (top or bottom of internal scroll)
+        const now = Date.now()
+
+        if (boundaryHitRef.current === 0) {
+          // First contact with the boundary — start the settle timer
+          boundaryHitRef.current = now
+          return
+        }
+
+        // Been at the boundary — check if settle time has elapsed
+        if (now - boundaryHitRef.current < BOUNDARY_SETTLE_MS) {
+          // Still settling — block navigation
+          return
+        }
+
+        // Settle period over — allow fallthrough to navigate
+      }
+
       if (e.deltaY > 0) navigate('next')
       else if (e.deltaY < 0) navigate('prev')
     }
@@ -85,7 +105,6 @@ export function useHorizontalScroll(
     const handleTouchEnd = (e: TouchEvent) => {
       if (touchStartXRef.current === null) return
       const deltaX = touchStartXRef.current - e.changedTouches[0].clientX
-      // swipe left (deltaX > 0) → next; swipe right (deltaX < 0) → prev
       if (deltaX > 30) navigate('next')
       else if (deltaX < -30) navigate('prev')
       touchStartXRef.current = null

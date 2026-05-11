@@ -1,7 +1,8 @@
 import { useForm, ValidationError } from '@formspree/react'
 import { motion } from 'framer-motion'
-import { User, Mail, MessageSquare } from 'lucide-react'
+import { Check, Send } from 'lucide-react'
 import { SocialLinks } from '../components/SocialLinks'
+import { CyberSectionHeading } from '../components/cyber'
 
 const FORMSPREE_ID = 'xyzpanom'
 
@@ -9,23 +10,20 @@ export function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_ID)
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-slate-100 px-6 py-16 relative">
+    <div className="cyber-section w-screen min-h-screen flex flex-col items-center justify-center px-6 py-16 relative">
       <div className="max-w-lg w-full">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white text-center mb-3"
         >
-          Contact
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-14 h-0.5 rounded-full bg-gradient-to-r from-pink-400 to-rose-500 mx-auto mb-10 origin-center"
-        />
+          <CyberSectionHeading
+            title="Contact"
+            subtitle="// establish connection"
+            accent="magenta"
+          />
+        </motion.div>
 
         {state.succeeded ? (
           <motion.div
@@ -33,13 +31,17 @@ export function Contact() {
             animate={{ opacity: 1, scale: 1 }}
             className="text-center py-8"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 text-green-400 mb-6 mx-auto border border-green-500/20">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+            <div
+              className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 text-accent mb-6 mx-auto border border-accent/30"
+              style={{ clipPath: 'var(--clip-chamfer)' }}
+            >
+              <Check size={28} strokeWidth={2} />
             </div>
-            <p className="text-green-400 text-lg font-medium">
-              Message sent! I'll get back to you soon.
+            <p className="font-mono text-accent text-base uppercase tracking-wider">
+              Transmission received.
+            </p>
+            <p className="text-muted-foreground text-sm mt-2">
+              I'll get back to you soon.
             </p>
           </motion.div>
         ) : (
@@ -52,61 +54,77 @@ export function Contact() {
             className="space-y-5"
           >
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
-                <User size={14} className="text-slate-500" />
-                Name
+              <label htmlFor="name" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
+                <span className="text-accent">{'>'}</span> Name
               </label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                required
-                placeholder="John Doe"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all"
-              />
-              <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="operator_name"
+                  className="cyber-input"
+                />
+              </div>
+              <ValidationError prefix="Name" field="name" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
-                <Mail size={14} className="text-slate-500" />
-                Email
+              <label htmlFor="email" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
+                <span className="text-accent">{'>'}</span> Email
               </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                placeholder="john@example.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all"
-              />
-              <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="operator@domain.net"
+                  className="cyber-input"
+                />
+              </div>
+              <ValidationError prefix="Email" field="email" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-semibold mb-1.5 text-slate-300 ml-1 flex items-center gap-1.5">
-                <MessageSquare size={14} className="text-slate-500" />
-                Message
+              <label htmlFor="message" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
+                <span className="text-accent">{'>'}</span> Message
               </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                required
-                placeholder="Let's build something great together..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/40 transition-all resize-none"
-              />
-              <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1 ml-1" />
+              <div className="relative">
+                <span className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  placeholder="Enter transmission..."
+                  className="cyber-input resize-none min-h-[120px] pt-3"
+                />
+              </div>
+              <ValidationError prefix="Message" field="message" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={state.submitting}
-              className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 disabled:opacity-50 text-white font-bold py-3.5 rounded-xl shadow-[0_4px_15px_rgba(236,72,153,0.2)] hover:shadow-[0_6px_20px_rgba(236,72,153,0.3)] transition-all"
+              className="cyber-button cyber-button-secondary w-full py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {state.submitting ? 'Sending...' : 'Send Message'}
+              {state.submitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="w-4 h-4 border-2 border-accent-secondary/30 border-t-accent-secondary rounded-full animate-spin" />
+                  Transmitting...
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  <Send size={14} strokeWidth={1.5} />
+                  Send Message
+                </span>
+              )}
             </motion.button>
           </motion.form>
         )}
@@ -124,8 +142,8 @@ export function Contact() {
 
       {/* Footer */}
       <div className="absolute bottom-6 left-0 right-0 z-10 w-full flex justify-center pb-2">
-        <p className="text-center text-slate-500 text-sm tracking-wide font-medium">
-          © {new Date().getFullYear()} Howard Ju. All rights reserved.
+        <p className="text-center text-muted-foreground font-mono text-xs tracking-[0.15em] uppercase">
+          © {new Date().getFullYear()} Howard Ju — All rights reserved
         </p>
       </div>
     </div>
