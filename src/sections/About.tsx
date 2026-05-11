@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
+import { CyberSectionHeading } from '../components/cyber'
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -27,74 +28,73 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 
 export function About() {
   return (
-    <div className="w-screen min-h-screen flex items-center justify-center bg-[#0a0a0a] text-slate-100 px-6 py-16">
+    <div className="cyber-section w-screen min-h-screen flex items-center justify-center px-6 py-16">
       <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-16">
         {/* Bio text */}
         <div className="flex-1 space-y-6">
-          <motion.h2
+          <motion.div
             {...fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white"
           >
-            About Me
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-20 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 origin-left"
-          />
+            <CyberSectionHeading
+              title="About Me"
+              subtitle="// whoami"
+              accent="cyan"
+              align="left"
+              className="mb-0"
+            />
+          </motion.div>
 
           <div className="space-y-4">
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-slate-300 leading-relaxed sm:text-lg font-light"
+              className="text-foreground/80 leading-relaxed sm:text-base font-light"
             >
-              Full Stack Developer with <strong className="text-blue-300 font-semibold">20 years of experience</strong> building scalable web platforms and enterprise-grade systems.
+              Full Stack Developer with <strong className="text-accent font-semibold">20 years of experience</strong> building scalable web platforms and enterprise-grade systems.
             </motion.p>
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-slate-300 leading-relaxed sm:text-lg font-light"
+              className="text-foreground/80 leading-relaxed sm:text-base font-light"
             >
-              I've worked across financial media, telecommunications, energy, and government sectors — delivering solutions for organisations including <span className="text-slate-100 font-medium">TVNZ, SKY, Mercury, Vector, Xero, and New Zealand Customs</span>.
+              I've worked across financial media, telecommunications, energy, and government sectors — delivering solutions for organisations including <span className="text-foreground font-medium">TVNZ, SKY, Mercury, Vector, Xero, and New Zealand Customs</span>.
             </motion.p>
             <motion.p
               {...fadeUp}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-slate-300 leading-relaxed sm:text-lg font-light"
+              className="text-foreground/80 leading-relaxed sm:text-base font-light"
             >
               I enjoy turning complex problems into clean, reliable systems and exploring how AI can enhance the way developers build software.
             </motion.p>
           </div>
 
-          {/* Quick stats with animated counters */}
+          {/* Quick stats — cyber stat cards */}
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex gap-6 pt-4"
+            className="flex gap-4 pt-4"
           >
             {[
-              { value: 20, suffix: '+', label: 'Years', color: 'from-cyan-400 to-blue-500' },
-              { value: 8, suffix: '', label: 'Companies', color: 'from-blue-400 to-indigo-500' },
-              { value: 6, suffix: '', label: 'Sectors', color: 'from-indigo-400 to-purple-500' },
+              { value: 20, suffix: '+', label: 'Years' },
+              { value: 8, suffix: '', label: 'Companies' },
+              { value: 6, suffix: '', label: 'Sectors' },
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="flex-1 text-center p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]"
+                className="flex-1 text-center p-4 bg-card border border-border"
+                style={{ clipPath: 'var(--clip-chamfer-sm)' }}
               >
-                <div className={`text-2xl sm:text-3xl font-extrabold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                <div className="text-2xl sm:text-3xl font-heading font-bold text-accent cyber-neon-text">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs sm:text-sm text-slate-400 uppercase tracking-wider mt-1">{stat.label}</div>
+                <div className="cyber-label mt-1.5">{stat.label}</div>
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Decorative code-style accent (replaces duplicate profile photo) */}
+        {/* Terminal code card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -102,23 +102,21 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex-shrink-0 hidden md:block"
         >
-          <div className="relative w-64 sm:w-72 rounded-2xl border border-white/10 bg-white/[0.03] p-5 font-mono text-sm leading-relaxed shadow-2xl shadow-blue-500/5">
-            {/* Window dots */}
-            <div className="flex gap-1.5 mb-4">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+          <div className="cyber-card-terminal w-64 sm:w-72 p-5 font-mono text-sm leading-relaxed">
+            {/* Traffic light dots — rendered by ::before in CSS, but we need manual here */}
+            <div className="flex gap-1.5 mb-4 -mt-0">
+              <div className="w-2.5 h-2.5 bg-destructive/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
+              <div className="w-2.5 h-2.5 bg-accent/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
+              <div className="w-2.5 h-2.5 bg-accent-tertiary/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
             </div>
-            <div className="text-slate-500">{'//'} whoami</div>
-            <div><span className="text-purple-400">const</span> <span className="text-cyan-300">developer</span> <span className="text-slate-500">=</span> {'{'}</div>
-            <div className="pl-4"><span className="text-blue-300">name</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Howard Ju'</span><span className="text-slate-500">,</span></div>
-            <div className="pl-4"><span className="text-blue-300">role</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Full Stack Dev'</span><span className="text-slate-500">,</span></div>
-            <div className="pl-4"><span className="text-blue-300">location</span><span className="text-slate-500">:</span> <span className="text-amber-300">'Auckland, NZ'</span><span className="text-slate-500">,</span></div>
-            <div className="pl-4"><span className="text-blue-300">passion</span><span className="text-slate-500">:</span> <span className="text-amber-300">'AI × Dev'</span><span className="text-slate-500">,</span></div>
+            <div className="text-muted-foreground">{'//'} whoami</div>
+            <div><span className="text-accent-secondary">const</span> <span className="text-accent-tertiary">developer</span> <span className="text-muted-foreground">=</span> {'{'}</div>
+            <div className="pl-4"><span className="text-accent">name</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Howard Ju'</span><span className="text-muted-foreground">,</span></div>
+            <div className="pl-4"><span className="text-accent">role</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Full Stack Dev'</span><span className="text-muted-foreground">,</span></div>
+            <div className="pl-4"><span className="text-accent">location</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Auckland, NZ'</span><span className="text-muted-foreground">,</span></div>
+            <div className="pl-4"><span className="text-accent">passion</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'AI × Dev'</span><span className="text-muted-foreground">,</span></div>
             <div>{'}'}</div>
-            <div className="mt-2 text-slate-500">{'//'} always learning 🚀</div>
-            {/* Subtle glow */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+            <div className="mt-2 text-muted-foreground">{'//'} always learning <span className="cyber-cursor" /></div>
           </div>
         </motion.div>
       </div>

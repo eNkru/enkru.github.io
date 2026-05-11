@@ -55,7 +55,7 @@ function App() {
             {/* Section separator for mobile */}
             {i < SECTIONS.length - 1 && (
               <div className="flex items-center justify-center py-6">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+                <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
               </div>
             )}
           </div>
