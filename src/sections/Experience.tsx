@@ -9,7 +9,7 @@ export function Experience() {
 
   return (
     <div className="cyber-section w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden flex items-start justify-center px-6 py-16 pb-24 relative">
-      <div className="max-w-4xl w-full">
+      <div className="max-w-4xl w-full min-h-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function Experience() {
           {/* Timeline line — neon rail */}
           <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-accent-secondary/60 via-accent-secondary/30 to-accent/20" />
 
-          <div className="space-y-8">
+          <div className="space-y-8 pb-12">
             {experience.map((entry, index) => {
               const isExpanded = expandedId === entry.id
               return (
@@ -80,7 +80,7 @@ export function Experience() {
                     </div>
 
                     <div className="p-4">
-                      <p className="cyber-label text-muted-foreground">{entry.period}</p>
+                      {entry.period && <p className="cyber-label text-muted-foreground">{entry.period}</p>}
                       <p className="text-foreground/70 text-sm leading-relaxed mt-2">{entry.description}</p>
 
                       {/* Tech tags */}
@@ -124,10 +124,10 @@ export function Experience() {
             })}
           </div>
         </div>
-
-        {/* Scroll-more hint — fades out at bottom edge */}
-        <div className="sticky bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none -mt-12 z-10" />
       </div>
+
+      {/* Scroll-more hint — fades out at bottom edge, fixed to viewport bottom */}
+      <div className="sticky bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none -mt-16 z-10 flex-shrink-0" />
     </div>
   )
 }
