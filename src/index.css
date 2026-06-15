@@ -187,17 +187,7 @@
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .cyber-card-terminal::before {
-    content: "";
-    display: block;
-    height: 32px;
-    background: var(--color-muted);
-    border-bottom: 1px solid var(--color-border);
-    margin: -1px -1px 0 -1px;
-    clip-path: polygon(
-      0 10px, 10px 0,
-      calc(100% - 10px) 0, 100% 10px,
-      100% 100%, 0 100%
-    );
+    display: none;
   }
 
   /* ── Buttons ── */
@@ -363,4 +353,204 @@
   60%  { transform: translate(1px, -2px); }
   80%  { transform: translate(-1px, 2px); }
   100% { transform: translate(0); }
+}
+
+/* ───────────────────────────────────────────────
+   Theme: Old (clean / readable)
+   Applied via <html class="theme-old">
+   ─────────────────────────────────────────────── */
+
+.theme-old {
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+
+  --color-background:        #0a0a0a;
+  --color-foreground:        #e2e8f0;
+  --color-card:              rgba(255,255,255,0.03);
+  --color-muted:             #1e1e1e;
+  --color-muted-foreground:  #94a3b8;
+  --color-accent:            #60a5fa;
+  --color-accent-secondary:  #818cf8;
+  --color-accent-tertiary:   #22d3ee;
+  --color-border:            rgba(255,255,255,0.08);
+  --color-input:             #0a0a0a;
+  --color-ring:              #60a5fa;
+  --color-destructive:       #f87171;
+
+  --shadow-neon:             none;
+  --shadow-neon-sm:          none;
+  --shadow-neon-lg:          none;
+  --shadow-neon-secondary:   none;
+  --shadow-neon-tertiary:    none;
+
+  --clip-chamfer:    none;
+  --clip-chamfer-sm: none;
+
+  .cyber-section {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  .cyber-grid-bg {
+    background-image: none;
+  }
+
+  .cyber-scanlines::after {
+    display: none;
+  }
+
+  .cyber-card {
+    clip-path: none;
+    border-radius: 0.75rem;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    transition: all 200ms ease;
+  }
+  .cyber-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .cyber-card-terminal {
+    clip-path: none;
+    border-radius: 0.75rem;
+  }
+
+  .cyber-button {
+    clip-path: none;
+    border-radius: 0.5rem;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .cyber-button:hover {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: none;
+  }
+  .cyber-button-secondary:hover {
+    background: var(--color-accent-secondary);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .cyber-input {
+    clip-path: none;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    color: var(--color-foreground);
+    letter-spacing: normal;
+  }
+  .cyber-input::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  .cyber-input:focus {
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+
+  .cyber-label {
+    font-family: var(--font-sans);
+    text-transform: none;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+
+  .cyber-heading {
+    font-family: var(--font-heading);
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 800;
+  }
+
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    display: none;
+  }
+
+  .cyber-glitch {
+    position: static;
+  }
+
+  .cyber-cursor::after {
+    display: none;
+  }
+
+  .cyber-neon-text {
+    text-shadow: none;
+  }
+
+  .cyber-neon-border {
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+}
+
+.theme-old body::after {
+  display: none;
+}
+
+.theme-old ::selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: #fff;
+}
+
+/* Hide matrix scanline overlay divs (Tailwind arbitrary values compile to classes containing "repeating-linear") */
+.theme-old [class*="repeating-linear"] {
+  display: none;
+}
+
+/* Hide HUD corner brackets in Intro */
+.theme-old .top-8.left-8.w-16.h-16,
+.theme-old .top-8.right-8.w-16.h-16,
+.theme-old .bottom-8.left-8.w-16.h-16,
+.theme-old .bottom-8.right-8.w-16.h-16 {
+  display: none;
+}
+
+/* Hide HUD corner accents in ShowcaseCard / cards */
+.theme-old .top-0.left-0.w-4.h-4,
+.theme-old .top-0.right-0.w-4.h-4,
+.theme-old .bottom-0.left-0.w-4.h-4,
+.theme-old .bottom-0.right-0.w-4.h-4 {
+  display: none;
+}
+
+/* Avatar — circular in old theme */
+.theme-old .inset-\[-4px\] {
+  border-radius: 9999px;
+}
+.theme-old .inset-\[-2px\] {
+  border-radius: 9999px;
+}
+.theme-old .relative.w-28.h-28.object-cover {
+  border-radius: 9999px;
+  border: 3px solid var(--color-background);
+}
+
+/* Hide avatar status indicator dot in Intro */
+.theme-old .-bottom-1.-right-1.w-4.h-4 {
+  display: none;
+}
+
+/* Hide Contact form terminal prompts (">" prefix) */
+.theme-old .absolute.left-3.font-mono.text-sm {
+  display: none;
+}
+
+/* Skills & cards: icon containers — rounded in old theme */
+.theme-old .w-9.h-9.bg-muted.border.border-border {
+  border-radius: 0.75rem;
+}
+
+/* Skills & cards: pill tags — rounded in old theme */
+.theme-old [class*="gap-1.5"] > span.border {
+  border-radius: 9999px;
+}
+
+/* Cards with overflow-hidden: remove box-shadow on hover (gets clipped) */
+.theme-old .overflow-hidden.cyber-card:hover {
+  box-shadow: none;
 }

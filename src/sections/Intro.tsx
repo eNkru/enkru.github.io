@@ -29,8 +29,8 @@ export function Intro() {
           src={src}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-40 mix-blend-luminosity"
-          style={{ opacity: i === bgIndex ? 0.25 : 0 }}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-60 mix-blend-luminosity"
+          style={{ opacity: i === bgIndex ? 0.5 : 0 }}
         />
       ))}
 

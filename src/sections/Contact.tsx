@@ -64,7 +64,6 @@ export function Contact() {
                   type="text"
                   name="name"
                   required
-                  placeholder="operator_name"
                   className="cyber-input"
                 />
               </div>
@@ -82,7 +81,6 @@ export function Contact() {
                   type="email"
                   name="email"
                   required
-                  placeholder="operator@domain.net"
                   className="cyber-input"
                 />
               </div>
@@ -100,7 +98,6 @@ export function Contact() {
                   name="message"
                   rows={4}
                   required
-                  placeholder="Enter transmission..."
                   className="cyber-input resize-none min-h-[120px] pt-3"
                 />
               </div>

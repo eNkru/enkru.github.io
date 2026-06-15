@@ -94,5 +94,25 @@ export const experience: ExperienceEntry[] = [
     description: "Enhanced Xero's website for improved user experiences, focusing on performance and interface interactions.",
     tags: ["React", "TypeScript", "UX", "Performance"],
   },
+  {
+    id: "skytv2",
+    cover: "/img/experience/skytv_cover.png",
+    logo: "/img/experience/skylogo.png",
+    title: "SKYTV",
+    role: "Contract Senior Developer",
+    period: "2025 – Present",
+    description: "Help Metadata and Curation team to build the integration platform.",
+    tags: ["Java", "Spring Boot", "Spring Reactive", "Docker"],
+  },
+  {
+    id: "future",
+    cover: "/img/experience/future_cover.svg",
+    logo: "/img/experience/future_logo.svg",
+    title: "Next Chapter",
+    role: "To be continued...",
+    period: "",
+    description: "Actively seeking new opportunities. If you have an interesting role or project, feel free to reach out.",
+    tags: ["Let's connect"],
+  },
 
 ]
