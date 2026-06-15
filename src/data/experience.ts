@@ -51,7 +51,7 @@ export const experience: ExperienceEntry[] = [
     period: "2012 – 2017",
     description:
       "Grew quickly to senior level. Responsible for many back-end / integration services in the organisation. Led the dev team for several projects.",
-    tags: ["Java", "Microservices", "AWS", "Team Lead"],
+    tags: ["Java", "Microservices", "AWS", "SpringBoot"],
   },
   {
     id: "tvnz",
@@ -62,7 +62,7 @@ export const experience: ExperienceEntry[] = [
     period: "2017 – 2020",
     description:
       "Led the One News digital team development, delivering real-time news experiences. Supported other teams with deep platform expertise.",
-    tags: ["React", "Node.js", "AWS Lambda", "Video Streaming"],
+    tags: ["Tech Lead", "Java", "React", "NodeJS", "AWS", "AEM"],
   },
   {
     id: "mercury",
@@ -72,7 +72,7 @@ export const experience: ExperienceEntry[] = [
     role: "Contract Senior Developer",
     period: "2020 – 2021",
     description: "Built Mercury's public website and integrated energy service APIs for customer-facing platforms.",
-    tags: ["React", "REST APIs", "Integration", "AEM"],
+    tags: ["React", "NodeJS", "Integration", "AWS"],
   },
   {
     id: "nzcustoms",
@@ -82,7 +82,7 @@ export const experience: ExperienceEntry[] = [
     role: "Contract Senior Developer",
     period: "2021 – 2024",
     description: "Developed the NZ Traveller Declaration system and trade facilitation platforms, supporting digital border processes.",
-    tags: ["Java", "Spring Boot", "Microservices", "Docker"],
+    tags: ["Java", "SpringBoot", "Microservices", "Docker", "Azure", "OCP"],
   },
   {
     id: "xero",
@@ -92,7 +92,7 @@ export const experience: ExperienceEntry[] = [
     role: "Contract Senior Developer",
     period: "2024 – 2025",
     description: "Enhanced Xero's website for improved user experiences, focusing on performance and interface interactions.",
-    tags: ["React", "TypeScript", "UX", "Performance"],
+    tags: ["React", "TypeScript", "UX", "AI"],
   },
   {
     id: "skytv2",
@@ -102,7 +102,7 @@ export const experience: ExperienceEntry[] = [
     role: "Contract Senior Developer",
     period: "2025 – Present",
     description: "Help Metadata and Curation team to build the integration platform.",
-    tags: ["Java", "Spring Boot", "Spring Reactive", "Docker"],
+    tags: ["Java", "SpringBoot", "Spring Reactive", "Docker", "AI"],
   },
   {
     id: "future",
