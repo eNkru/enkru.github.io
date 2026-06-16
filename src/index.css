@@ -11,10 +11,10 @@
   --font-mono:    "Share Tech Mono", "JetBrains Mono", monospace;
 
   /* Core palette */
-  --color-background:        #0a0a0f;
+  --color-background:        #12121e;
   --color-foreground:        #e0e0e0;
-  --color-card:              #12121a;
-  --color-muted:             #1c1c2e;
+  --color-card:              #18182a;
+  --color-muted:             #20203a;
   --color-muted-foreground:  #6b7280;
   --color-accent:            #00ff88;
   --color-accent-secondary:  #ff00ff;
@@ -169,6 +169,7 @@
     background: var(--color-card);
     border: 1px solid var(--color-border);
     clip-path: var(--clip-chamfer);
+    cursor: pointer;
     transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .cyber-card:hover {
@@ -356,37 +357,11 @@
 }
 
 /* ───────────────────────────────────────────────
-   Theme: Old (clean / readable)
-   Applied via <html class="theme-old">
+   Shared overrides for non‑matrix themes
    ─────────────────────────────────────────────── */
 
-.theme-old {
-  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans:    "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    "JetBrains Mono", monospace;
-
-  --color-background:        #0a0a0a;
-  --color-foreground:        #e2e8f0;
-  --color-card:              rgba(255,255,255,0.03);
-  --color-muted:             #1e1e1e;
-  --color-muted-foreground:  #94a3b8;
-  --color-accent:            #60a5fa;
-  --color-accent-secondary:  #818cf8;
-  --color-accent-tertiary:   #22d3ee;
-  --color-border:            rgba(255,255,255,0.08);
-  --color-input:             #0a0a0a;
-  --color-ring:              #60a5fa;
-  --color-destructive:       #f87171;
-
-  --shadow-neon:             none;
-  --shadow-neon-sm:          none;
-  --shadow-neon-lg:          none;
-  --shadow-neon-secondary:   none;
-  --shadow-neon-tertiary:    none;
-
-  --clip-chamfer:    none;
-  --clip-chamfer-sm: none;
-
+.theme-old,
+.theme-light {
   .cyber-section {
     background: var(--color-background);
     color: var(--color-foreground);
@@ -399,6 +374,61 @@
   .cyber-scanlines::after {
     display: none;
   }
+
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    display: none;
+  }
+
+  .cyber-glitch {
+    position: static;
+  }
+
+  .cyber-cursor::after {
+    display: none;
+  }
+
+  .cyber-neon-text {
+    text-shadow: none;
+  }
+
+  .cyber-neon-border {
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Theme: Old (clean / readable)
+   Applied via <html class="theme-old">
+   ─────────────────────────────────────────────── */
+
+.theme-old {
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+
+  --color-background:        #16162a;
+  --color-foreground:        #e2e8f0;
+  --color-card:              rgba(255,255,255,0.05);
+  --color-muted:             #1e1e36;
+  --color-muted-foreground:  #94a3b8;
+  --color-accent:            #60a5fa;
+  --color-accent-secondary:  #818cf8;
+  --color-accent-tertiary:   #22d3ee;
+  --color-border:            rgba(255,255,255,0.08);
+  --color-input:             #16162a;
+  --color-ring:              #60a5fa;
+  --color-destructive:       #f87171;
+
+  --shadow-neon:             none;
+  --shadow-neon-sm:          none;
+  --shadow-neon-lg:          none;
+  --shadow-neon-secondary:   none;
+  --shadow-neon-tertiary:    none;
+
+  --clip-chamfer:    none;
+  --clip-chamfer-sm: none;
 
   .cyber-card {
     clip-path: none;
@@ -465,27 +495,6 @@
     font-weight: 800;
   }
 
-  .cyber-glitch::before,
-  .cyber-glitch::after {
-    display: none;
-  }
-
-  .cyber-glitch {
-    position: static;
-  }
-
-  .cyber-cursor::after {
-    display: none;
-  }
-
-  .cyber-neon-text {
-    text-shadow: none;
-  }
-
-  .cyber-neon-border {
-    border: 1px solid var(--color-border);
-    box-shadow: none;
-  }
 }
 
 .theme-old body::after {
@@ -553,4 +562,315 @@
 /* Cards with overflow-hidden: remove box-shadow on hover (gets clipped) */
 .theme-old .overflow-hidden.cyber-card:hover {
   box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Theme: Light — Luxury / Editorial
+   Applied via <html class="theme-light">
+   ═══════════════════════════════════════════════ */
+
+.theme-light {
+  /* ── Typography ── */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "Inter", ui-monospace, "SF Mono", monospace;
+
+  /* ── Colors (Sophisticated Monochrome + Gold) ── */
+  --color-background:        #f9f8f6;  /* Warm Alabaster */
+  --color-foreground:        #1a1a1a;  /* Rich Charcoal */
+  --color-card:              #ffffff;  /* White for surfaces needing lift */
+  --color-muted:             #ebe5de;  /* Pale Taupe */
+  --color-muted-foreground:  #6c6863;  /* Warm Grey */
+  --color-accent:            #d4af37;  /* Metallic Gold — sparingly */
+  --color-accent-secondary:  #8b7355;  /* Warm Bronze — for code syntax, category tags */
+  --color-accent-tertiary:   #7a8e8e;  /* Muted Sage — for code syntax, category tags */
+  --color-border:            rgba(26, 26, 26, 0.12);
+  --color-input:             #ffffff;
+  --color-ring:              #d4af37;
+  --color-destructive:       #c0392b;
+
+  /* ── Shadows — subtle layered depth ── */
+  --shadow-neon:             0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-neon-sm:          0 4px 20px rgba(0, 0, 0, 0.10);
+  --shadow-neon-lg:          0 8px 32px rgba(0, 0, 0, 0.14);
+  --shadow-neon-secondary:   0 4px 16px rgba(0, 0, 0, 0.18);
+  --shadow-neon-tertiary:    inset 0 0 0 1px rgba(26, 26, 26, 0.06);
+
+  /* ── Radii — strictly rectangular ── */
+  --clip-chamfer:    none;
+  --clip-chamfer-sm: none;
+
+  /* ── Cards — defined by a single top border, transparent ── */
+  .cyber-card {
+    clip-path: none;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--color-border);
+    transition: background 500ms ease-out;
+  }
+  .cyber-card:hover {
+    border-top-color: var(--color-accent);
+    background: rgba(249, 248, 246, 0.5);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .cyber-card-terminal {
+    clip-path: none;
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* ── Buttons — rectangular, uppercase, wide tracking ── */
+  .cyber-button {
+    clip-path: none;
+    border-radius: 0;
+    background: var(--color-foreground);
+    color: #fff;
+    border: none;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    height: 3rem;
+    padding: 0 2rem;
+    transition: background 500ms ease-out, box-shadow 500ms ease-out;
+  }
+  .cyber-button:hover {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(212, 175, 55, 0.25);
+  }
+
+  .cyber-button-secondary {
+    background: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-foreground);
+  }
+  .cyber-button-secondary:hover {
+    background: var(--color-foreground);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  /* ── Inputs — underline only, italic serif placeholder ── */
+  .cyber-input {
+    clip-path: none;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.15);
+    color: var(--color-foreground);
+    padding: 0.5rem 0;
+    padding-left: 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    letter-spacing: normal;
+    transition: border-color 500ms ease-out;
+  }
+  .cyber-input::placeholder {
+    color: #6c6863;
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-size: 0.875rem;
+    opacity: 1;
+  }
+  .cyber-input:focus {
+    border-bottom-color: var(--color-accent);
+    box-shadow: none;
+    outline: none;
+  }
+  .cyber-input:focus-visible {
+    border-bottom-color: var(--color-accent);
+    outline: none;
+  }
+
+  /* ── Labels — uppercase, wide tracking ── */
+  .cyber-label {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ── Headings — Playfair Display ── */
+  .cyber-heading {
+    font-family: var(--font-heading);
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: var(--color-foreground);
+  }
+
+}
+
+/* ── Paper grain texture overlay ── */
+.theme-light body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+}
+
+/* ── Selection ── */
+.theme-light ::selection {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-foreground);
+}
+
+/* ── Hide scanline overlays ── */
+.theme-light [class*="repeating-linear"] {
+  display: none;
+}
+
+/* ── Hide HUD corner brackets ── */
+.theme-light .top-8.left-8.w-16.h-16,
+.theme-light .top-8.right-8.w-16.h-16,
+.theme-light .bottom-8.left-8.w-16.h-16,
+.theme-light .bottom-8.right-8.w-16.h-16 {
+  display: none;
+}
+
+.theme-light .top-0.left-0.w-4.h-4,
+.theme-light .top-0.right-0.w-4.h-4,
+.theme-light .bottom-0.left-0.w-4.h-4,
+.theme-light .bottom-0.right-0.w-4.h-4 {
+  display: none;
+}
+
+/* ── Avatar — rectangular with editorial shadow ── */
+.theme-light .inset-\[-4px\] {
+  border-radius: 9999px;
+}
+.theme-light .inset-\[-2px\] {
+  border-radius: 9999px;
+}
+.theme-light .relative.w-28.h-28.object-cover {
+  border-radius: 9999px;
+  border: 3px solid var(--color-background);
+  box-shadow: var(--shadow-neon-sm);
+}
+
+/* ── Hide avatar status dot ── */
+.theme-light .-bottom-1.-right-1.w-4.h-4 {
+  display: none;
+}
+
+/* ── Hide Contact form terminal prompts (prefix ">") ── */
+.theme-light .absolute.left-3.font-mono.text-sm {
+  display: none;
+}
+
+/* ── Icon containers — rectangular ── */
+.theme-light .w-9.h-9.bg-muted.border.border-border {
+  border-radius: 0;
+}
+
+/* ── Pill tags — rectangular ── */
+.theme-light [class*="gap-1.5"] > span.border {
+  border-radius: 0;
+  border: none !important;
+}
+
+
+/* ── Cards with overflow-hidden ── */
+.theme-light .overflow-hidden.cyber-card:hover {
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════
+   Editorial Utility Classes
+   ═══════════════════════════════════════════════ */
+
+/* ── Drop Cap ── */
+.theme-light .drop-cap::first-letter {
+  float: left;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 5rem;
+  line-height: 0.8;
+  margin-right: 0.5rem;
+  color: var(--color-foreground);
+}
+
+/* ── Vertical sidebar text ── */
+.theme-light .vertical-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-muted-foreground);
+}
+
+/* ── Decorative line ── */
+.theme-light .decorative-line {
+  width: 2rem;
+  height: 1px;
+  background: var(--color-foreground);
+}
+
+/* ── Image grayscale transition (use on <img> inside a .group) ── */
+.theme-light .editorial-image {
+  filter: grayscale(100%);
+  transition: filter 1500ms ease-out, transform 1500ms ease-out;
+  transform: scale(1);
+}
+.theme-light .group:hover .editorial-image {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* ── Hide Intro background images (dark moody photos) ── */
+.theme-light img[aria-hidden="true"] {
+  display: none;
+}
+
+/* ── Override hardcoded dark text colors (LanguageDonut, etc.) ── */
+.theme-light .text-white {
+  color: var(--color-foreground) !important;
+}
+.theme-light .text-slate-400,
+.theme-light .text-slate-500 {
+  color: var(--color-muted-foreground) !important;
+}
+
+/* ── Dark section overlay gradient — tone down for light theme ── */
+.theme-light .from-background\/60,
+.theme-light .from-background\/40 {
+  --tw-gradient-from: rgba(249, 248, 246, 0.4) !important;
+}
+.theme-light .via-background\/60,
+.theme-light .via-background\/80 {
+  --tw-gradient-via: rgba(249, 248, 246, 0.6) !important;
+}
+
+/* ── Text readability — no opacity tricks on light bg ── */
+.theme-light .font-light,
+.theme-light .font-thin {
+  font-weight: 400 !important;
+}
+.theme-light .text-foreground\/70,
+.theme-light .text-foreground\/80 {
+  color: var(--color-foreground) !important;
+}
+.theme-light .text-accent\/80,
+.theme-light .text-accent-secondary\/80,
+.theme-light .text-accent-tertiary\/80,
+.theme-light .text-accent-tertiary\/60 {
+  color: var(--color-foreground) !important;
+}
+.theme-light .text-muted-foreground\/25,
+.theme-light .text-muted-foreground\/40 {
+  color: var(--color-muted-foreground) !important;
 }

@@ -125,7 +125,7 @@ export function LanguageDonut({ stats }: LanguageDonutProps) {
         {stats.map((stat, i) => (
           <button
             key={stat.language}
-            className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer"
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
           >

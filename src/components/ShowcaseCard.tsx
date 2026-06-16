@@ -66,7 +66,7 @@ export function ShowcaseCard({ title, images, url, description }: ShowcaseCardPr
               <button
                 key={i}
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrent(i) }}
-                className={`transition-all duration-200 ${
+                className={`cursor-pointer transition-all duration-200 ${
                   i === current
                     ? 'w-3 h-1.5 bg-accent shadow-[var(--shadow-neon-sm)]'
                     : 'w-1.5 h-1.5 bg-muted-foreground/50 hover:bg-accent/50'
