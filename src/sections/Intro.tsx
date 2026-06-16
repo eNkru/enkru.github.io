@@ -1,51 +1,10 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { SocialLinks } from '../components/SocialLinks'
 import { ChevronRight } from 'lucide-react'
 
-const BG_IMAGES = [
-  '/img/background/1.jpg',
-  '/img/background/1.1.jpg',
-  '/img/background/2.jpg',
-  '/img/background/2.1.jpg',
-]
-
 export function Intro() {
-  const [bgIndex, setBgIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % BG_IMAGES.length)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <div className="cyber-section cyber-grid-bg w-screen h-screen overflow-hidden flex items-center justify-center">
-      {/* Background images — corrupted surveillance feed */}
-      {BG_IMAGES.map((src, i) => (
-        <img
-          key={src}
-          src={src}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-60 mix-blend-luminosity"
-          style={{ opacity: i === bgIndex ? 0.5 : 0 }}
-        />
-      ))}
-
-      {/* Dark overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40 pointer-events-none" />
-
-      {/* Scanlines */}
-      <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.2)_2px,rgba(0,0,0,0.2)_4px)]" />
-
-      {/* Corner HUD brackets */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-accent/30 pointer-events-none hidden md:block" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-t-2 border-r-2 border-accent/30 pointer-events-none hidden md:block" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-accent/30 pointer-events-none hidden md:block" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-accent/30 pointer-events-none hidden md:block" />
+    <div className="cyber-section w-screen h-screen overflow-hidden flex items-center justify-center">
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">

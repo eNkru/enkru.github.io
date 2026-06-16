@@ -43,7 +43,7 @@ export function SectionDots({ current, onChange, labels }: SectionDotsProps) {
           <button
             onClick={() => onChange(i)}
             aria-label={`Go to ${label}`}
-            className={`transition-all duration-200 ${
+            className={`cursor-pointer transition-all duration-200 ${
               i === current
                 ? 'w-3 h-3 bg-accent border border-accent shadow-[var(--shadow-neon)] rotate-45'
                 : 'w-2 h-2 bg-border border border-border hover:border-accent/60 hover:bg-accent/20 hover:shadow-[var(--shadow-neon-sm)]'
