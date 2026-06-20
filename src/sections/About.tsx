@@ -51,7 +51,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-foreground/80 leading-relaxed sm:text-base font-light"
             >
-              Full Stack Developer with <strong className="text-accent font-semibold">20 years of experience</strong> building scalable web platforms and enterprise-grade systems.
+              Senior full-stack and integration consultant with <strong className="text-accent font-semibold">20 years of experience</strong> building scalable web platforms and enterprise-grade systems.
             </motion.p>
             <motion.p
               {...fadeUp}
@@ -112,7 +112,7 @@ export function About() {
             <div className="text-muted-foreground">{'//'} whoami</div>
             <div><span className="text-accent-secondary">const</span> <span className="text-accent-tertiary">developer</span> <span className="text-muted-foreground">=</span> {'{'}</div>
             <div className="pl-4"><span className="text-accent">name</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Howard Ju'</span><span className="text-muted-foreground">,</span></div>
-            <div className="pl-4"><span className="text-accent">role</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Full Stack Dev'</span><span className="text-muted-foreground">,</span></div>
+            <div className="pl-4"><span className="text-accent">role</span><span className="text-muted-foreground">:</span>             <span className="text-accent/80">'Senior Full-Stack &amp; Integration Consultant'</span><span className="text-muted-foreground">,</span></div>
             <div className="pl-4"><span className="text-accent">location</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Auckland, NZ'</span><span className="text-muted-foreground">,</span></div>
             <div className="pl-4"><span className="text-accent">passion</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'AI × Dev'</span><span className="text-muted-foreground">,</span></div>
             <div>{'}'}</div>

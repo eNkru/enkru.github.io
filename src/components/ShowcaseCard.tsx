@@ -7,9 +7,13 @@ export interface ShowcaseCardProps {
   images: string[]
   url: string
   description?: string
+  role?: string
+  techStack?: string[]
+  problem?: string
+  impact?: string
 }
 
-export function ShowcaseCard({ title, images, url, description }: ShowcaseCardProps) {
+export function ShowcaseCard({ title, images, url, description, role, techStack, problem, impact }: ShowcaseCardProps) {
   const [current, setCurrent] = useState(0)
 
   const next = useCallback(() => {
@@ -42,6 +46,7 @@ export function ShowcaseCard({ title, images, url, description }: ShowcaseCardPr
             key={images[current]}
             src={images[current]}
             alt={`${title} screenshot ${current + 1}`}
+            loading="lazy"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -96,6 +101,41 @@ export function ShowcaseCard({ title, images, url, description }: ShowcaseCardPr
         {description && (
           <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">
             {description}
+          </p>
+        )}
+
+        {/* Role */}
+        {role && (
+          <div className="flex items-center gap-1.5">
+            <span className="cyber-label text-accent-secondary text-[10px] uppercase tracking-wider">Role:</span>
+            <span className="text-foreground/70 text-xs font-mono">{role}</span>
+          </div>
+        )}
+
+        {/* Tech stack */}
+        {techStack && techStack.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="px-1.5 py-0.5 bg-accent-secondary/10 text-accent-secondary/70 text-[9px] font-mono tracking-wider border border-accent-secondary/20"
+                style={{ clipPath: 'var(--clip-chamfer-sm)' }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Problem & impact — shown on hover or via subtle text */}
+        {problem && (
+          <p className="text-muted-foreground/60 text-[10px] leading-relaxed italic line-clamp-2">
+            {problem}
+          </p>
+        )}
+        {impact && (
+          <p className="text-accent/70 text-[10px] font-mono leading-relaxed">
+            → {impact}
           </p>
         )}
 

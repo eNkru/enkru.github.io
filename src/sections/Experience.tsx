@@ -60,6 +60,7 @@ export function Experience() {
                       <img
                         src={entry.cover}
                         alt={`${entry.title} cover`}
+                        loading="lazy"
                         className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-[1.02] transition-all duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
@@ -69,6 +70,7 @@ export function Experience() {
                         <img
                           src={entry.logo}
                           alt={`${entry.title} logo`}
+                          loading="lazy"
                           className="w-8 h-8 sm:w-10 sm:h-10 object-contain bg-card border border-border p-1"
                           style={{ clipPath: 'var(--clip-chamfer-sm)' }}
                         />
