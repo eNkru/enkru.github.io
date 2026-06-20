@@ -53,37 +53,22 @@ export function Experience() {
                     onClick={() => setExpandedId(isExpanded ? null : entry.id)}
                     className="cyber-card w-full text-left overflow-hidden group p-0 hover:transform-none"
                   >
-                    {/* Cover image — surveillance feed */}
-                    <div className="relative h-24 sm:h-28 overflow-hidden border-b border-border">
-                      {/* Scanlines over cover */}
-                      <div className="absolute inset-0 z-10 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.15)_2px,rgba(0,0,0,0.15)_4px)]" />
-                      <img
-                        src={entry.cover}
-                        alt={`${entry.title} cover`}
-                        loading="lazy"
-                        className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-[1.02] transition-all duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-
-                      {/* Logo overlay */}
-                      <div className="absolute bottom-3 left-4 flex items-center gap-3 z-20">
+                    <div className="p-4">
+                      <div className="flex items-center gap-3 mb-3">
                         <img
                           src={entry.logo}
                           alt={`${entry.title} logo`}
                           loading="lazy"
-                          className="w-8 h-8 sm:w-10 sm:h-10 object-contain bg-card border border-border p-1"
+                          className="w-8 h-8 sm:w-10 sm:h-10 object-contain bg-card border border-border p-1 shrink-0"
                           style={{ clipPath: 'var(--clip-chamfer-sm)' }}
                         />
-                        <div>
-                          <h3 className="font-mono text-foreground font-semibold text-sm sm:text-base leading-tight">{entry.title}</h3>
-                          <p className="text-accent-secondary text-xs sm:text-sm font-mono font-medium">{entry.role}</p>
+                        <div className="min-w-0">
+                          <h3 className="font-mono text-foreground font-semibold text-sm sm:text-base leading-tight truncate">{entry.title}</h3>
+                          <p className="text-accent-secondary text-xs sm:text-sm font-mono font-medium truncate">{entry.role}</p>
                         </div>
                       </div>
-                    </div>
-
-                    <div className="p-4">
-                      {entry.period && <p className="cyber-label text-muted-foreground">{entry.period}</p>}
-                      <p className="text-foreground/70 text-sm leading-relaxed mt-2">{entry.description}</p>
+                      {entry.period && <p className="cyber-label text-muted-foreground mb-2">{entry.period}</p>}
+                      <p className="text-foreground/70 text-sm leading-relaxed">{entry.description}</p>
 
                       {/* Tech tags */}
                       <AnimatePresence>

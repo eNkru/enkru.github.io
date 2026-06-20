@@ -95,7 +95,7 @@ export function GitHubShowcase() {
                   Star Count by Repo
                 </h3>
                 {starredRepos.length > 0 ? (
-                  <StarsBarChart repos={starredRepos} />
+                  <StarsBarChart repos={starredRepos.slice(0, 4)} />
                 ) : (
                   <div className="flex items-center justify-center h-40 text-muted-foreground text-sm font-mono">
                     No starred repos yet
@@ -110,15 +110,15 @@ export function GitHubShowcase() {
                 <h3 className="font-mono text-foreground font-semibold text-sm uppercase tracking-wider flex items-center gap-2">
                   <Star size={14} strokeWidth={1.5} className="text-accent" />
                   Featured Repositories
-                  <span className="cyber-label text-muted-foreground ml-1">({starredRepos.length} with stars)</span>
+                  <span className="cyber-label text-muted-foreground ml-1">(top {Math.min(4, starredRepos.length)} of {starredRepos.length})</span>
                 </h3>
               </motion.div>
             )}
 
             {/* Repo cards grid — only repos with stars */}
             {starredRepos.length > 0 && (
-              <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {starredRepos.map((repo) => (
+              <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {starredRepos.slice(0, 4).map((repo) => (
                   <motion.div key={repo.id} variants={fadeUp}>
                     <GitHubRepoCard repo={repo} />
                   </motion.div>
