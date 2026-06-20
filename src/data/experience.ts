@@ -1,6 +1,5 @@
 export interface ExperienceEntry {
   id: string
-  cover: string
   logo: string
   title: string
   role: string
@@ -12,7 +11,6 @@ export interface ExperienceEntry {
 export const experience: ExperienceEntry[] = [
   {
     id: "skytv2",
-    cover: "/img/experience/skytv_cover.png",
     logo: "/img/experience/skylogo.png",
     title: "SKYTV",
     role: "Contract Senior Developer",
@@ -22,7 +20,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "xero",
-    cover: "/img/experience/xero_cover.png",
     logo: "/img/experience/xerologo.png",
     title: "Xero",
     role: "Contract Senior Developer",
@@ -32,7 +29,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "nzcustoms",
-    cover: "/img/experience/nzcustoms_cover.png",
     logo: "/img/experience/nzcustomslogo.png",
     title: "NZ Customs",
     role: "Contract Senior Developer",
@@ -42,7 +38,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "mercury",
-    cover: "/img/experience/mercury_cover.png",
     logo: "/img/experience/mercurylogo.png",
     title: "Mercury",
     role: "Contract Senior Developer",
@@ -52,7 +47,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "tvnz",
-    cover: "/img/experience/tvnz_cover.png",
     logo: "/img/experience/tvnzlogo.png",
     title: "TVNZ",
     role: "Contract Technical Lead",
@@ -63,7 +57,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "skytv",
-    cover: "/img/experience/skytv_cover.png",
     logo: "/img/experience/skylogo.png",
     title: "SKYTV",
     role: "Senior Developer",
@@ -74,7 +67,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "propellerhead",
-    cover: "/img/experience/propellerhead_cover.png",
     logo: "/img/experience/phlogo.png",
     title: "Propellerhead",
     role: "Software Developer",
@@ -85,7 +77,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "kiwiplan",
-    cover: "/img/experience/kiwiplan_cover.png",
     logo: "/img/experience/kplogo.png",
     title: "Kiwiplan",
     role: "Developer and Analyst",
@@ -96,7 +87,6 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "uoa",
-    cover: "/img/experience/uoa_cover.png",
     logo: "/img/experience/uoalogo.png",
     title: "University of Auckland",
     role: "BSc, Computer Science and Information Systems",
