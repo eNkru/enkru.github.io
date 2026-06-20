@@ -28,6 +28,7 @@ export function Intro() {
           <img
             src="/img/aboutme2.jpg"
             alt="Howard Ju"
+            loading="lazy"
             className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-cover"
             style={{ clipPath: 'var(--clip-chamfer)' }}
           />
@@ -54,7 +55,7 @@ export function Intro() {
           className="font-mono text-sm sm:text-base text-accent/80 mb-2 flex items-center gap-1"
         >
           <ChevronRight size={14} strokeWidth={1.5} className="text-accent" />
-          <span className="uppercase tracking-[0.15em]">Open Minded Consultant</span>
+          <span className="uppercase tracking-[0.15em]">Senior Full-Stack &amp; Integration Consultant</span>
         </motion.div>
 
         <motion.p
@@ -63,7 +64,7 @@ export function Intro() {
           transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           className="font-mono text-xs sm:text-sm text-muted-foreground tracking-[0.1em] uppercase cyber-cursor"
         >
-          Solution analysis &amp; design &bull; Implementation
+          20 years building enterprise web, integration &amp; cloud platforms
         </motion.p>
 
         {/* Divider */}
