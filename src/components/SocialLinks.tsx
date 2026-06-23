@@ -10,7 +10,7 @@ const SOCIAL_LINKS = [
     external: true,
   },
   {
-    href: 'https://github.com/eNkru',
+    href: 'https://github.com/enkru',
     icon: Github,
     label: 'GitHub',
     accent: 'text-foreground hover:border-foreground hover:shadow-[0_0_5px_rgba(224,224,224,0.3)]',
