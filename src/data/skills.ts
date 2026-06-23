@@ -5,36 +5,40 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    category: "Core Strengths",
+    category: "Backend & Integration",
     items: [
-      "React.js / TypeScript / Node.js",
       "Java / SpringBoot / Spring Reactive",
       "REST APIs / Microservices Architecture",
-      "AWS Cloud / Docker / Kubernetes",
-      "LLM Integration (OpenAI, Claude, Gemini)",
-      "RAG / MCP / AI-Augmented Development",
-    ],
-  },
-  {
-    category: "Current Stack",
-    items: [
-      "React.js / Redux / Vite",
-      "Java / SpringBoot / Quarkus",
       "Node.js / AWS Lambda / Serverless",
       "Docker / Containerised Infrastructure",
       "CI/CD (Jenkins, GitHub Actions, Bamboo)",
       "MongoDB / Cassandra / PostgreSQL",
+      "ESB / BPS / API Gateway (MuleSoft, WSO2)",
     ],
   },
   {
-    category: "Legacy Experience",
+    category: "Frontend",
     items: [
+      "React.js / TypeScript / Redux / Vite",
       "Ember.js / Vue.js / AngularJS",
+      "Bootstrap / Semantic UI / jQuery",
       "AEM / JCR / Adobe CMS",
-      "ESB / BPS / API Gateway (MuleSoft, WSO2)",
+    ],
+  },
+  {
+    category: "Artificial Intelligence",
+    items: [
+      "LLM Integration (OpenAI, Claude, Gemini)",
+      "RAG / MCP / AI-Augmented Development",
+      "Prompt Engineering & AI Workflows",
+    ],
+  },
+  {
+    category: "Other Skills",
+    items: [
+      "AWS Cloud / Azure / Kubernetes",
       "Groovy & Python Scripting",
       "Selenium / JMeter (Test & Performance)",
-      "Bootstrap / Semantic UI / jQuery",
     ],
   },
 ]

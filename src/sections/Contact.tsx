@@ -58,7 +58,7 @@ export function Contact() {
                 <span className="text-accent">{'>'}</span> Name
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
                 <input
                   id="name"
                   type="text"
@@ -75,7 +75,7 @@ export function Contact() {
                 <span className="text-accent">{'>'}</span> Email
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
                 <input
                   id="email"
                   type="email"
@@ -92,7 +92,7 @@ export function Contact() {
                 <span className="text-accent">{'>'}</span> Message
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
                 <textarea
                   id="message"
                   name="message"

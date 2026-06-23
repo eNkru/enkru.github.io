@@ -1,7 +1,7 @@
 import { type GitHubRepo } from '../data/github'
 import { getLangColor } from '../utils/github-languages'
 import { Star, GitFork, Link } from 'lucide-react'
-import { cn } from './cyber/utils'
+
 
 export interface GitHubRepoCardProps {
   repo: GitHubRepo

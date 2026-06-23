@@ -507,55 +507,41 @@
 }
 
 /* Hide matrix scanline overlay divs (Tailwind arbitrary values compile to classes containing "repeating-linear") */
-.theme-old [class*="repeating-linear"] {
+.theme-old [data-theme-showcase-image] .bg-\[repeating-linear-gradient\(0deg\,transparent\,transparent_2px\,rgba\(0\,0\,0\,0\.2\)_2px\,rgba\(0\,0\,0\,0\.2\)_4px\)\] {
   display: none;
 }
 
 /* Hide HUD corner brackets in Intro */
-.theme-old .top-8.left-8.w-16.h-16,
-.theme-old .top-8.right-8.w-16.h-16,
-.theme-old .bottom-8.left-8.w-16.h-16,
-.theme-old .bottom-8.right-8.w-16.h-16 {
-  display: none;
-}
-
-/* Hide HUD corner accents in ShowcaseCard / cards */
-.theme-old .top-0.left-0.w-4.h-4,
-.theme-old .top-0.right-0.w-4.h-4,
-.theme-old .bottom-0.left-0.w-4.h-4,
-.theme-old .bottom-0.right-0.w-4.h-4 {
+.theme-old [data-theme-hud-corner] {
   display: none;
 }
 
 /* Avatar — circular in old theme */
-.theme-old .inset-\[-4px\] {
+.theme-old [data-theme-avatar-frame] {
   border-radius: 9999px;
 }
-.theme-old .inset-\[-2px\] {
-  border-radius: 9999px;
-}
-.theme-old .relative.w-28.h-28.object-cover {
+.theme-old [data-theme-avatar] {
   border-radius: 9999px;
   border: 3px solid var(--color-background);
 }
 
 /* Hide avatar status indicator dot in Intro */
-.theme-old .-bottom-1.-right-1.w-4.h-4 {
+.theme-old [data-theme-status] {
   display: none;
 }
 
 /* Hide Contact form terminal prompts (">" prefix) */
-.theme-old .absolute.left-3.font-mono.text-sm {
+.theme-old [data-theme-form-prefix] {
   display: none;
 }
 
 /* Skills & cards: icon containers — rounded in old theme */
-.theme-old .w-9.h-9.bg-muted.border.border-border {
+.theme-old [data-theme-icon] {
   border-radius: 0.75rem;
 }
 
 /* Skills & cards: pill tags — rounded in old theme */
-.theme-old [class*="gap-1.5"] > span.border {
+.theme-old [data-theme-pill] {
   border-radius: 9999px;
 }
 
@@ -729,55 +715,42 @@
 }
 
 /* ── Hide scanline overlays ── */
-.theme-light [class*="repeating-linear"] {
+.theme-light [data-theme-showcase-image] .bg-\[repeating-linear-gradient\(0deg\,transparent\,transparent_2px\,rgba\(0\,0\,0\,0\.2\)_2px\,rgba\(0\,0\,0\,0\.2\)_4px\)\] {
   display: none;
 }
 
 /* ── Hide HUD corner brackets ── */
-.theme-light .top-8.left-8.w-16.h-16,
-.theme-light .top-8.right-8.w-16.h-16,
-.theme-light .bottom-8.left-8.w-16.h-16,
-.theme-light .bottom-8.right-8.w-16.h-16 {
-  display: none;
-}
-
-.theme-light .top-0.left-0.w-4.h-4,
-.theme-light .top-0.right-0.w-4.h-4,
-.theme-light .bottom-0.left-0.w-4.h-4,
-.theme-light .bottom-0.right-0.w-4.h-4 {
+.theme-light [data-theme-hud-corner] {
   display: none;
 }
 
 /* ── Avatar — rectangular with editorial shadow ── */
-.theme-light .inset-\[-4px\] {
+.theme-light [data-theme-avatar-frame] {
   border-radius: 9999px;
 }
-.theme-light .inset-\[-2px\] {
-  border-radius: 9999px;
-}
-.theme-light .relative.w-28.h-28.object-cover {
+.theme-light [data-theme-avatar] {
   border-radius: 9999px;
   border: 3px solid var(--color-background);
   box-shadow: var(--shadow-neon-sm);
 }
 
 /* ── Hide avatar status dot ── */
-.theme-light .-bottom-1.-right-1.w-4.h-4 {
+.theme-light [data-theme-status] {
   display: none;
 }
 
 /* ── Hide Contact form terminal prompts (prefix ">") ── */
-.theme-light .absolute.left-3.font-mono.text-sm {
+.theme-light [data-theme-form-prefix] {
   display: none;
 }
 
 /* ── Icon containers — rectangular ── */
-.theme-light .w-9.h-9.bg-muted.border.border-border {
+.theme-light [data-theme-icon] {
   border-radius: 0;
 }
 
 /* ── Pill tags — rectangular ── */
-.theme-light [class*="gap-1.5"] > span.border {
+.theme-light [data-theme-pill] {
   border-radius: 0;
   border: none !important;
 }

@@ -73,6 +73,7 @@ function SkillCard({ cat }: { cat: typeof skills[number] }) {
       {/* Header: icon + title + count */}
       <div className="flex items-center gap-3 relative">
         <div
+          data-theme-icon
           className="w-9 h-9 bg-muted border border-border flex items-center justify-center group-hover:border-accent/30 transition-colors duration-200"
           style={{ clipPath: 'var(--clip-chamfer-sm)' }}
         >
@@ -93,6 +94,7 @@ function SkillCard({ cat }: { cat: typeof skills[number] }) {
         {cat.items.map((item) => (
           <span
             key={item}
+            data-theme-pill
             className={`px-2 py-0.5 ${cfg.tagBg} ${cfg.tagText} text-[10px] sm:text-xs font-mono tracking-wider ${cfg.tagBorder} border`}
             style={{ clipPath: 'var(--clip-chamfer-sm)' }}
           >
