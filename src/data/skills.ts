@@ -7,10 +7,10 @@ export const skills: SkillCategory[] = [
   {
     category: "Core Strengths",
     items: [
-      "React.js / TypeScript / Node.js",
+      "React.js / TypeScript / Vite",
       "Java / SpringBoot / Spring Reactive",
       "REST APIs / Microservices Architecture",
-      "AWS Cloud / Docker / Kubernetes",
+      "AWS / Docker / Kubernetes",
       "LLM Integration (OpenAI, Claude, Gemini)",
       "RAG / MCP / AI-Augmented Development",
     ],
@@ -18,12 +18,12 @@ export const skills: SkillCategory[] = [
   {
     category: "Current Stack",
     items: [
-      "React.js / Redux / Vite",
-      "Java / SpringBoot / Quarkus",
       "Node.js / AWS Lambda / Serverless",
-      "Docker / Containerised Infrastructure",
       "CI/CD (Jenkins, GitHub Actions, Bamboo)",
       "MongoDB / Cassandra / PostgreSQL",
+      "Prompt Engineering & AI Workflows",
+      "Redux / State Management",
+      "Containerised Infrastructure",
     ],
   },
   {

@@ -23,10 +23,10 @@ const variantClasses: Record<CyberButtonVariant, string> = {
     'inline-flex items-center justify-center gap-2',
     'font-sans font-semibold uppercase',
     'bg-transparent border border-border text-muted-foreground',
-    'clip-path: var(--clip-chamfer-sm)',
     'cursor-pointer transition-all duration-150',
     'hover:border-accent hover:text-accent hover:shadow-[var(--shadow-neon-sm)]',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+    'cyber-chamfer-sm',
   ].join(' '),
   ghost: [
     'inline-flex items-center justify-center gap-2',

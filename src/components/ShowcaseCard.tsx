@@ -37,7 +37,7 @@ export function ShowcaseCard({ title, images, url, description, role, techStack,
       <div className="absolute inset-0 bg-gradient-to-br from-accent-secondary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       {/* Image area — surveillance monitor frame */}
-      <div className="relative aspect-video bg-background overflow-hidden border-b border-border">
+      <div data-theme-showcase-image className="relative aspect-video bg-background overflow-hidden border-b border-border">
         {/* Scanlines over image */}
         <div className="absolute inset-0 z-10 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.2)_2px,rgba(0,0,0,0.2)_4px)]" />
 
@@ -56,10 +56,10 @@ export function ShowcaseCard({ title, images, url, description, role, techStack,
         </AnimatePresence>
 
         {/* Corner HUD accents */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent/40 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent/40 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-accent/40 pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-accent/40 pointer-events-none" />
+        <div data-theme-hud-corner className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent/40 pointer-events-none" />
+        <div data-theme-hud-corner className="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent/40 pointer-events-none" />
+        <div data-theme-hud-corner className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-accent/40 pointer-events-none" />
+        <div data-theme-hud-corner className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-accent/40 pointer-events-none" />
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />

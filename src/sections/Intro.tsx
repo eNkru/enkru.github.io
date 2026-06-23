@@ -18,10 +18,12 @@ export function Intro() {
         >
           {/* Outer neon frame */}
           <div
+            data-theme-avatar-frame
             className="absolute inset-[-4px] bg-accent/20"
             style={{ clipPath: 'var(--clip-chamfer)' }}
           />
           <div
+            data-theme-avatar-frame
             className="absolute inset-[-2px] bg-accent/40"
             style={{ clipPath: 'var(--clip-chamfer-sm)' }}
           />
@@ -29,11 +31,12 @@ export function Intro() {
             src="/img/aboutme2.jpg"
             alt="Howard Ju"
             loading="lazy"
+            data-theme-avatar
             className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-cover"
             style={{ clipPath: 'var(--clip-chamfer)' }}
           />
           {/* Status indicator */}
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-accent shadow-[var(--shadow-neon)] z-10" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
+          <div data-theme-status className="absolute -bottom-1 -right-1 w-4 h-4 bg-accent shadow-[var(--shadow-neon)] z-10" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
         </motion.div>
 
         {/* Name — glitched headline */}

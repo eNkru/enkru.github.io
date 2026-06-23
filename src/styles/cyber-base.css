@@ -1,0 +1,399 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────
+   Cyberpunk / Glitch Design System — Tokens
+   ─────────────────────────────────────────────── */
+
+@theme {
+  /* Fonts */
+  --font-heading: "Orbitron", "Share Tech Mono", monospace;
+  --font-sans:    "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  --font-mono:    "Share Tech Mono", "JetBrains Mono", monospace;
+
+  /* Core palette */
+  --color-background:        #12121e;
+  --color-foreground:        #e0e0e0;
+  --color-card:              #18182a;
+  --color-muted:             #20203a;
+  --color-muted-foreground:  #6b7280;
+  --color-accent:            #00ff88;
+  --color-accent-secondary:  #ff00ff;
+  --color-accent-tertiary:   #00d4ff;
+  --color-border:            #2a2a3a;
+  --color-input:             #12121a;
+  --color-ring:              #00ff88;
+  --color-destructive:       #ff3366;
+}
+
+/* ───────────────────────────────────────────────
+   CSS Custom Properties for shadows / clip-paths
+   ─────────────────────────────────────────────── */
+
+:root {
+  --shadow-neon:              0 0 5px #00ff88, 0 0 10px #00ff8840;
+  --shadow-neon-sm:           0 0 3px #00ff88, 0 0 6px #00ff8830;
+  --shadow-neon-lg:           0 0 10px #00ff88, 0 0 20px #00ff8860, 0 0 40px #00ff8830;
+  --shadow-neon-secondary:    0 0 5px #ff00ff, 0 0 20px #ff00ff60;
+  --shadow-neon-tertiary:     0 0 5px #00d4ff, 0 0 20px #00d4ff60;
+
+  --clip-chamfer: polygon(
+    0 10px, 10px 0,
+    calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 0 calc(100% - 10px)
+  );
+
+  --clip-chamfer-sm: polygon(
+    0 6px, 6px 0,
+    calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px)
+  );
+}
+
+/* ───────────────────────────────────────────────
+   Base layer
+   ─────────────────────────────────────────────── */
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    letter-spacing: 0.02em;
+  }
+
+  ::selection {
+    background: #00ff8830;
+    color: #fff;
+  }
+
+  /* Scanline overlay on the whole page */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cyber-glitch,
+    .cyber-glitch::before,
+    .cyber-glitch::after {
+      animation: none !important;
+    }
+    .cyber-cursor::after {
+      animation: none !important;
+    }
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Utilities
+   ─────────────────────────────────────────────── */
+
+@layer utilities {
+
+  /* ── Scroll helpers (preserved from original) ── */
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
+  }
+
+  /* ── Section shell ── */
+
+  .cyber-section {
+    position: relative;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  /* ── Grid / circuit background ── */
+
+  .cyber-grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* ── Scanlines overlay for a single element ── */
+
+  .cyber-scanlines {
+    position: relative;
+  }
+  .cyber-scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.25) 2px,
+      rgba(0, 0, 0, 0.25) 4px
+    );
+    z-index: 1;
+  }
+
+  /* ── Chamfered corner clips ── */
+
+  .cyber-chamfer {
+    clip-path: var(--clip-chamfer);
+  }
+
+  .cyber-chamfer-sm {
+    clip-path: var(--clip-chamfer-sm);
+  }
+
+  /* ── Card surface ── */
+
+  .cyber-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    clip-path: var(--clip-chamfer);
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cyber-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-neon);
+    transform: translateY(-1px);
+  }
+
+  /* ── Terminal card surface ── */
+
+  .cyber-card-terminal {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    clip-path: var(--clip-chamfer);
+    position: relative;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cyber-card-terminal::before {
+    display: none;
+  }
+
+  /* ── Buttons ── */
+
+  .cyber-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.625rem 1.25rem;
+    background: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+    clip-path: var(--clip-chamfer-sm);
+    cursor: pointer;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cyber-button:hover {
+    background: var(--color-accent);
+    color: var(--color-background);
+    box-shadow: var(--shadow-neon);
+  }
+  .cyber-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-accent);
+  }
+
+  .cyber-button-secondary {
+    border-color: var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+  }
+  .cyber-button-secondary:hover {
+    background: var(--color-accent-secondary);
+    color: var(--color-background);
+    box-shadow: var(--shadow-neon-secondary);
+  }
+  .cyber-button-secondary:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-accent-secondary);
+  }
+
+  /* ── Input ── */
+
+  .cyber-input {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    background: var(--color-input);
+    border: 1px solid var(--color-border);
+    color: var(--color-accent);
+    padding: 0.75rem 1rem 0.75rem 2rem;
+    clip-path: var(--clip-chamfer-sm);
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cyber-input::placeholder {
+    color: var(--color-muted-foreground);
+  }
+  .cyber-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-neon);
+  }
+
+  /* ── Labels ── */
+
+  .cyber-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ── Headings ── */
+
+  .cyber-heading {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+
+  /* ── Glitch / chromatic aberration ── */
+
+  .cyber-glitch {
+    position: relative;
+  }
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .cyber-glitch::before {
+    color: var(--color-accent-secondary);
+    animation: glitch-1 3s infinite linear alternate-reverse;
+    clip-path: inset(0 0 60% 0);
+    opacity: 0.8;
+  }
+  .cyber-glitch::after {
+    color: var(--color-accent-tertiary);
+    animation: glitch-2 3s infinite linear alternate-reverse;
+    clip-path: inset(60% 0 0 0);
+    opacity: 0.8;
+  }
+
+  /* ── Blinking cursor ── */
+
+  .cyber-cursor::after {
+    content: "▋";
+    display: inline;
+    color: var(--color-accent);
+    animation: blink 1s step-end infinite;
+    margin-left: 0.15em;
+  }
+
+  /* ── Neon text glow ── */
+
+  .cyber-neon-text {
+    color: var(--color-accent);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+  }
+
+  /* ── Neon border glow ── */
+
+  .cyber-neon-border {
+    border: 1px solid var(--color-accent);
+    box-shadow: var(--shadow-neon-sm);
+  }
+}
+
+/* ───────────────────────────────────────────────
+   Keyframes
+   ─────────────────────────────────────────────── */
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes glitch-1 {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, 2px); }
+  80%  { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(2px, -1px); }
+  40%  { transform: translate(-2px, 1px); }
+  60%  { transform: translate(1px, -2px); }
+  80%  { transform: translate(-1px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* ───────────────────────────────────────────────
+   Shared overrides for non‑matrix themes
+   ─────────────────────────────────────────────── */
+
+.theme-old,
+.theme-light {
+  .cyber-section {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  .cyber-grid-bg {
+    background-image: none;
+  }
+
+  .cyber-scanlines::after {
+    display: none;
+  }
+
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    display: none;
+  }
+
+  .cyber-glitch {
+    position: static;
+  }
+
+  .cyber-cursor::after {
+    display: none;
+  }
+
+  .cyber-neon-text {
+    text-shadow: none;
+  }
+
+  .cyber-neon-border {
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+  }
+}
