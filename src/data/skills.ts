@@ -5,40 +5,36 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    category: "Backend & Integration",
+    category: "Core Strengths",
     items: [
+      "React.js / TypeScript / Vite",
       "Java / SpringBoot / Spring Reactive",
       "REST APIs / Microservices Architecture",
-      "Node.js / AWS Lambda / Serverless",
-      "Docker / Containerised Infrastructure",
-      "CI/CD (Jenkins, GitHub Actions, Bamboo)",
-      "MongoDB / Cassandra / PostgreSQL",
-      "ESB / BPS / API Gateway (MuleSoft, WSO2)",
-    ],
-  },
-  {
-    category: "Frontend",
-    items: [
-      "React.js / TypeScript / Redux / Vite",
-      "Ember.js / Vue.js / AngularJS",
-      "Bootstrap / Semantic UI / jQuery",
-      "AEM / JCR / Adobe CMS",
-    ],
-  },
-  {
-    category: "Artificial Intelligence",
-    items: [
+      "AWS / Docker / Kubernetes",
       "LLM Integration (OpenAI, Claude, Gemini)",
       "RAG / MCP / AI-Augmented Development",
-      "Prompt Engineering & AI Workflows",
     ],
   },
   {
-    category: "Other Skills",
+    category: "Current Stack",
     items: [
-      "AWS Cloud / Azure / Kubernetes",
+      "Node.js / AWS Lambda / Serverless",
+      "CI/CD (Jenkins, GitHub Actions, Bamboo)",
+      "MongoDB / Cassandra / PostgreSQL",
+      "Prompt Engineering & AI Workflows",
+      "Redux / State Management",
+      "Containerised Infrastructure",
+    ],
+  },
+  {
+    category: "Legacy Experience",
+    items: [
+      "Ember.js / Vue.js / AngularJS",
+      "AEM / JCR / Adobe CMS",
+      "ESB / BPS / API Gateway (MuleSoft, WSO2)",
       "Groovy & Python Scripting",
       "Selenium / JMeter (Test & Performance)",
+      "Bootstrap / Semantic UI / jQuery",
     ],
   },
 ]

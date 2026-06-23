@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Server, Monitor, Brain, Wrench } from 'lucide-react'
+import { Server, Zap, Archive } from 'lucide-react'
 import { skills } from '../data/skills'
 import { CyberSectionHeading } from '../components/cyber'
 
@@ -13,7 +13,7 @@ const CATEGORY_CONFIG: Record<string, {
   tagText: string
   tagBorder: string
 }> = {
-  'Backend & Integration': {
+  'Core Strengths': {
     icon: Server,
     accent: 'text-accent',
     glow: 'from-accent/10 via-accent/5 to-accent/10',
@@ -21,24 +21,16 @@ const CATEGORY_CONFIG: Record<string, {
     tagText: 'text-accent/80',
     tagBorder: 'border-accent/20',
   },
-  'Frontend': {
-    icon: Monitor,
-    accent: 'text-accent-tertiary',
-    glow: 'from-accent-tertiary/10 via-accent-tertiary/5 to-accent-tertiary/10',
-    tagBg: 'bg-accent-tertiary/10',
-    tagText: 'text-accent-tertiary/80',
-    tagBorder: 'border-accent-tertiary/20',
-  },
-  'Artificial Intelligence': {
-    icon: Brain,
+  'Current Stack': {
+    icon: Zap,
     accent: 'text-accent-secondary',
     glow: 'from-accent-secondary/10 via-accent-secondary/5 to-accent-secondary/10',
     tagBg: 'bg-accent-secondary/10',
     tagText: 'text-accent-secondary/80',
     tagBorder: 'border-accent-secondary/20',
   },
-  'Other Skills': {
-    icon: Wrench,
+  'Legacy Experience': {
+    icon: Archive,
     accent: 'text-muted-foreground',
     glow: 'from-muted/10 via-muted/5 to-muted/10',
     tagBg: 'bg-muted/40',
@@ -47,7 +39,7 @@ const CATEGORY_CONFIG: Record<string, {
   },
 }
 
-const DEFAULT_CONFIG = CATEGORY_CONFIG['Other Skills']!
+const DEFAULT_CONFIG = CATEGORY_CONFIG['Legacy Experience']!
 
 const stagger = {
   hidden: {},
