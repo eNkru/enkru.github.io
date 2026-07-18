@@ -41,9 +41,11 @@ export function SectionDots({ current, onChange, labels }: SectionDotsProps) {
 
           {/* HUD marker */}
           <button
+            type="button"
             onClick={() => onChange(i)}
             aria-label={`Go to ${label}`}
-            className={`cursor-pointer transition-all duration-200 ${
+            aria-current={i === current ? 'true' : undefined}
+            className={`cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
               i === current
                 ? 'w-3 h-3 bg-accent border border-accent shadow-[var(--shadow-neon)] rotate-45'
                 : 'w-2 h-2 bg-border border border-border hover:border-accent/60 hover:bg-accent/20 hover:shadow-[var(--shadow-neon-sm)]'

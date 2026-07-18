@@ -1,5 +1,10 @@
 import { useState, useEffect, useMemo } from 'react'
-import { GITHUB_USERNAME, STATIC_REPOS, type GitHubRepo } from '../data/github'
+import {
+  GITHUB_USERNAME,
+  STATIC_REPOS,
+  selectFeaturedRepos,
+  type GitHubRepo,
+} from '../data/github'
 import { computeLanguageStats, type LanguageStat } from '../utils/github-languages'
 
 const CACHE_KEY = `github-repos-${GITHUB_USERNAME}`
@@ -14,6 +19,8 @@ interface GitHubReposResult {
   repos: GitHubRepo[]
   /** Repos with at least 1 star, sorted by stars descending */
   starredRepos: GitHubRepo[]
+  /** Pin-first featured list for cards (cap N) */
+  featuredRepos: GitHubRepo[]
   /** Language distribution across all owned repos */
   languageStats: LanguageStat[]
   loading: boolean
@@ -107,10 +114,15 @@ export function useGitHubRepos(): GitHubReposResult {
     [repos]
   )
 
+  const featuredRepos = useMemo(
+    () => selectFeaturedRepos(repos),
+    [repos]
+  )
+
   const languageStats = useMemo(
     () => computeLanguageStats(repos),
     [repos]
   )
 
-  return { repos, starredRepos, languageStats, loading, error, totalStars, totalForks }
+  return { repos, starredRepos, featuredRepos, languageStats, loading, error, totalStars, totalForks }
 }
