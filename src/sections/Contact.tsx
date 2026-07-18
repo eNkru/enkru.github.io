@@ -55,10 +55,10 @@ export function Contact() {
           >
             <div>
               <label htmlFor="name" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent">{'>'}</span> Name
+                <span className="text-accent" aria-hidden="true">{'>'}</span> Name
               </label>
               <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
                 <input
                   id="name"
                   type="text"
@@ -72,10 +72,10 @@ export function Contact() {
 
             <div>
               <label htmlFor="email" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent">{'>'}</span> Email
+                <span className="text-accent" aria-hidden="true">{'>'}</span> Email
               </label>
               <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
                 <input
                   id="email"
                   type="email"
@@ -89,10 +89,10 @@ export function Contact() {
 
             <div>
               <label htmlFor="message" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent">{'>'}</span> Message
+                <span className="text-accent" aria-hidden="true">{'>'}</span> Message
               </label>
               <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none">{'>'}</span>
+                <span data-theme-form-prefix className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
                 <textarea
                   id="message"
                   name="message"
@@ -118,7 +118,7 @@ export function Contact() {
                 </span>
               ) : (
                 <span className="flex items-center gap-2">
-                  <Send size={14} strokeWidth={1.5} />
+                  <Send size={14} strokeWidth={1.5} aria-hidden="true" />
                   Send Message
                 </span>
               )}

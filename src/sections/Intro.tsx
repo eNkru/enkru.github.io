@@ -2,7 +2,11 @@ import { motion } from 'framer-motion'
 import { SocialLinks } from '../components/SocialLinks'
 import { ChevronRight } from 'lucide-react'
 
-export function Intro() {
+export interface IntroProps {
+  onViewWork?: () => void
+}
+
+export function Intro({ onViewWork }: IntroProps) {
   return (
     <div className="cyber-section w-screen h-screen overflow-hidden flex items-center justify-center">
 
@@ -30,7 +34,10 @@ export function Intro() {
           <img
             src="/img/aboutme2.jpg"
             alt="Howard Ju"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
+            width={176}
+            height={176}
             data-theme-avatar
             className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-cover"
             style={{ clipPath: 'var(--clip-chamfer)' }}
@@ -57,7 +64,7 @@ export function Intro() {
           transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
           className="font-mono text-sm sm:text-base text-accent/80 mb-2 flex items-center gap-1"
         >
-          <ChevronRight size={14} strokeWidth={1.5} className="text-accent" />
+          <ChevronRight size={14} strokeWidth={1.5} className="text-accent" aria-hidden="true" />
           <span className="uppercase tracking-[0.15em]">Senior Full-Stack &amp; Integration Consultant</span>
         </motion.div>
 
@@ -87,6 +94,25 @@ export function Intro() {
           <SocialLinks />
         </motion.div>
 
+        {/* View work CTA */}
+        {onViewWork && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-8"
+          >
+            <button
+              type="button"
+              onClick={onViewWork}
+              className="cyber-button inline-flex items-center gap-2"
+            >
+              View work
+              <ChevronRight size={14} strokeWidth={1.5} aria-hidden="true" />
+            </button>
+          </motion.div>
+        )}
+
         {/* Navigation hint */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,8 +122,8 @@ export function Intro() {
         >
           <div className="flex items-center gap-3 text-muted-foreground/40">
             <span className="cyber-label hidden sm:inline">Scroll</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             <span className="cyber-label sm:hidden">Swipe</span>
           </div>
           <span className="cyber-label text-muted-foreground/25 hidden sm:inline">or use the dots to navigate</span>
