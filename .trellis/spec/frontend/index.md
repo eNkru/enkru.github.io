@@ -14,25 +14,18 @@ This directory contains guidelines for frontend development for the enkru.github
 
 | Guide | Description | Status |
 |-------|-------------|--------|
-| [Directory Structure](./directory-structure.md) | Module organization and file layout | To fill |
+| [Directory Structure](./directory-structure.md) | Module organization and file layout | Filled |
 | [Component Guidelines](./component-guidelines.md) | Component patterns, props, a11y | Filled |
 | [Hook Guidelines](./hook-guidelines.md) | Custom hooks, GitHub featured selection | Filled |
-| [State Management](./state-management.md) | Local state, global state, server state | To fill |
+| [State Management](./state-management.md) | Local state, global state, server state | Filled |
 | [Quality Guidelines](./quality-guidelines.md) | SEO domain, copy honesty, build gates | Filled |
-| [Type Safety](./type-safety.md) | Type patterns, validation | To fill |
+| [Type Safety](./type-safety.md) | Type patterns, validation | Filled |
 
 ---
 
-## How to Fill These Guidelines
+## How to Use These Guidelines
 
-For each guideline file:
-
-1. Document your project's **actual conventions** (not ideals)
-2. Include **code examples** from your codebase
-3. List **forbidden patterns** and why
-4. Add **common mistakes** your team has made
-
-The goal is to help AI assistants and new team members understand how YOUR project works.
+Read the files relevant to the code being changed before implementation. Keep them synchronized when a task establishes a new reusable convention or makes an existing rule obsolete.
 
 ---
 

@@ -1,6 +1,4 @@
-import { useState, useEffect, useCallback, type ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import { useHorizontalScroll } from './hooks/useHorizontalScroll'
+import { useState, useEffect, useCallback } from 'react'
 import { SectionDots } from './components/SectionDots'
 import { Theme, ThemeProvider, useTheme } from './contexts/ThemeContext'
 import { Intro } from './sections/Intro'
@@ -10,7 +8,6 @@ import { Showcases } from './sections/Showcases'
 import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
 import { GitHubShowcase } from './sections/GitHubShowcase'
-import { isCompactViewport } from './utils/viewport'
 import { Monitor, Sun, Moon } from 'lucide-react'
 
 const SECTION_LABELS = ['Intro', 'About', 'Skills', 'Showcases', 'Open Source', 'Experience', 'Contact'] as const
@@ -24,12 +21,6 @@ const SECTION_IDS = [
   'section-contact',
 ] as const
 const SHOWCASES_INDEX = SECTION_LABELS.indexOf('Showcases')
-const SECTION_COUNT = SECTION_LABELS.length
-const slideTransition = {
-  type: 'tween' as const,
-  ease: 'easeInOut' as const,
-  duration: 0.6,
-}
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -69,30 +60,39 @@ function ThemeToggle() {
 
 function AppContent() {
   const [currentSection, setCurrentSection] = useState(0)
-  const [isCompact, setIsCompact] = useState(isCompactViewport())
-
-  useHorizontalScroll(SECTION_COUNT, currentSection, setCurrentSection, isCompact)
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsCompact(isCompactViewport())
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries.find((entry) => entry.isIntersecting)
+        if (!activeEntry) return
+
+        const index = SECTION_IDS.indexOf(activeEntry.target.id as typeof SECTION_IDS[number])
+        if (index !== -1) setCurrentSection(index)
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    )
+
+    SECTION_IDS.forEach((id) => {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const navigateToSection = useCallback((index: number) => {
+    document.getElementById(SECTION_IDS[index])?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
   }, [])
 
   const navigateToShowcases = useCallback(() => {
-    if (isCompact) {
-      document.getElementById('section-showcases')?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-      return
-    }
-    setCurrentSection(SHOWCASES_INDEX)
-  }, [isCompact])
+    navigateToSection(SHOWCASES_INDEX)
+  }, [navigateToSection])
 
-  const sections: ReactNode[] = [
+  const sections = [
     <Intro onViewWork={navigateToShowcases} />,
     <About />,
     <Skills />,
@@ -102,64 +102,34 @@ function AppContent() {
     <Contact />,
   ]
 
-  if (isCompact) {
-    return (
-      <>
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <div id="main-content" className="w-screen overflow-y-auto" tabIndex={-1}>
-          {sections.map((section, i) => (
-            <div
-              key={SECTION_LABELS[i]}
-              id={SECTION_IDS[i]}
-              className={`relative ${i < sections.length - 1 ? 'pb-4' : ''}`}
-            >
-              {section}
-              {i < sections.length - 1 && (
-                <div className="flex items-center justify-center py-6" aria-hidden="true">
-                  <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-                </div>
-              )}
-            </div>
-          ))}
-          <ThemeToggle />
-        </div>
-      </>
-    )
-  }
-
   return (
     <>
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <div id="main-content" className="w-screen h-screen overflow-hidden relative" tabIndex={-1}>
-        <motion.div
-          className="flex h-full"
-          animate={{ x: `${currentSection * -100}vw` }}
-          transition={slideTransition}
-        >
-          {sections.map((section, i) => (
-            <div
-              key={SECTION_LABELS[i]}
-              id={SECTION_IDS[i]}
-              className="w-screen h-screen flex-shrink-0"
-              aria-hidden={i !== currentSection}
-              // Keep keyboard focus out of off-screen horizontal sections
-              {...(i !== currentSection ? { inert: true } : {})}
-            >
-              {section}
-            </div>
-          ))}
-        </motion.div>
+      <main id="main-content" className="w-full overflow-x-hidden" tabIndex={-1}>
+        {sections.map((section, i) => (
+          <section
+            key={SECTION_LABELS[i]}
+            id={SECTION_IDS[i]}
+            aria-label={SECTION_LABELS[i]}
+            className={`relative ${i < sections.length - 1 ? 'pb-4' : ''}`}
+          >
+            {section}
+            {i < sections.length - 1 && (
+              <div className="flex items-center justify-center py-6" aria-hidden="true">
+                <div className="w-16 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+              </div>
+            )}
+          </section>
+        ))}
         <SectionDots
           current={currentSection}
-          onChange={setCurrentSection}
+          onChange={navigateToSection}
           labels={[...SECTION_LABELS]}
         />
         <ThemeToggle />
-      </div>
+      </main>
     </>
   )
 }

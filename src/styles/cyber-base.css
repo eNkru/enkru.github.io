@@ -101,21 +101,6 @@
 
 @layer utilities {
 
-  /* ── Scroll helpers (preserved from original) ── */
-
-  .scrollbar-hidden {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hidden::-webkit-scrollbar {
-    display: none;
-  }
-
-  .scroll-fade-y {
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
-  }
-
   /* ── Section shell ── */
 
   .cyber-section {

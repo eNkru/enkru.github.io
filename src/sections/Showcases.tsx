@@ -15,7 +15,7 @@ const fadeUp = {
 
 export function Showcases() {
   return (
-    <div className="cyber-section w-screen min-h-screen flex items-center justify-center px-6 py-16">
+    <div className="cyber-section w-full min-h-screen flex items-center justify-center px-6 py-16">
       <div className="max-w-6xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

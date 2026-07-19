@@ -8,7 +8,7 @@ export function Experience() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
-    <div className="cyber-section w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden flex items-start justify-center px-6 py-16 pb-24 relative">
+    <div className="cyber-section w-full min-h-screen flex items-start justify-center px-6 py-16 relative">
       <div className="max-w-4xl w-full min-h-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -112,9 +112,6 @@ export function Experience() {
           </div>
         </div>
       </div>
-
-      {/* Scroll-more hint — fades out at bottom edge, fixed to viewport bottom */}
-      <div className="sticky bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none -mt-16 z-10 flex-shrink-0" />
     </div>
   )
 }

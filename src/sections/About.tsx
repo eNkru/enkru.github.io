@@ -28,7 +28,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 
 export function About() {
   return (
-    <div className="cyber-section w-screen min-h-screen flex items-center justify-center px-6 py-16">
+    <div className="cyber-section w-full min-h-screen flex items-center justify-center px-6 py-16">
       <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-16">
         {/* Bio text */}
         <div className="flex-1 space-y-6">

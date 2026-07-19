@@ -33,15 +33,18 @@ Sections live under `src/sections/`, shared UI under `src/components/`. Data is 
 
 ## Accessibility
 
-### Horizontal sections (desktop)
+### Vertical section navigation
 
-- Only the **active** section is interactive. Non-active slides use `inert` (and `aria-hidden`) so Tab cannot enter off-screen panels.
-- Stable `id`s: `section-intro`, `section-about`, … (`SECTION_IDS` in `App.tsx`).
+- All viewport sizes use one native vertical document flow; do not reintroduce viewport-sized horizontal slides or custom wheel/swipe interception.
+- Stable `id`s remain `section-intro`, `section-about`, … (`SECTION_IDS` in `App.tsx`). Navigation callbacks use `scrollIntoView` rather than owning section translation state.
+- Desktop section dots are hidden below `1000px`, scroll to the matching stable ID, and expose the section observed near the viewport centre through `aria-current`.
+- Section shells use `w-full`, not `w-screen`. `100vw` can include the browser scrollbar width and create unwanted horizontal overflow on a vertically scrolling page.
+- Tall sections such as Open Source and Experience grow with their content. Avoid fixed viewport heights and nested `overflow-y-auto` containers unless the product explicitly requires an independent scroll region.
 
 ### Skip link
 
 - Root skip link targets `#main-content`.
-- Style with `position: fixed` + off-screen `transform`; on `:focus` bring into view. Avoid `top: -100%` alone (unreliable with full-viewport horizontal layout).
+- Style with `position: fixed` + off-screen `transform`; on `:focus` bring it into view.
 
 ### Cards with secondary detail
 
@@ -60,4 +63,5 @@ Sections live under `src/sections/`, shared UI under `src/components/`. Data is 
 
 - Using `loading="lazy"` on the LCP hero avatar — use `eager` + `fetchPriority="high"` + `width`/`height`.
 - Hover-only “more details” on Showcase cards.
-- Leaving off-screen horizontal sections focusable (missing `inert`).
+- Using `w-screen` for vertical section shells, which can produce a horizontal scrollbar when the browser reserves space for its vertical scrollbar.
+- Adding nested section scrollbars to compensate for fixed viewport heights; prefer natural document height.

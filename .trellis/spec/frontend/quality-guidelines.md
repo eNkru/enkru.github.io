@@ -26,13 +26,14 @@ Static marketing site on GitHub Pages (`https://enkru.github.io`). Prefer small,
 - Before deleting assets: `rg` for path references; keep logos and referenced WebP.
 - After SEO or domain edits: `rg 'howardju\.com' index.html src public` must be empty in task scope.
 - Verify with `npm run build` and `npx tsc --noEmit` when TypeScript changed.
+- For section-layout changes, search for stale horizontal-navigation code and verify the page uses stable section IDs, native vertical scrolling, and no `w-screen` section shells.
 
 ---
 
 ## Testing Requirements
 
 - No unit test framework required for this site yet.
-- Manual / build gate: build passes; smoke critical paths (View work → Showcases, featured repos render).
+- Manual / build gate: build passes; smoke critical paths (View work → Showcases, section dots → matching section, featured repos render).
 
 ---
 
@@ -41,6 +42,6 @@ Static marketing site on GitHub Pages (`https://enkru.github.io`). Prefer small,
 - [ ] Domain strings are `enkru.github.io` only
 - [ ] Copy has no new unverified numbers
 - [ ] Featured repo selection is pin → starred → recent, N=4
-- [ ] A11y: skip-link, inert off-screen sections, decorative `aria-hidden`
+- [ ] A11y: skip-link, section-dot `aria-current`, decorative `aria-hidden`
 - [ ] Images: no broken refs after asset cleanup
 - [ ] Build + tsc clean

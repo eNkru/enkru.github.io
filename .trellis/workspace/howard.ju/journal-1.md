@@ -38,3 +38,37 @@ Implemented SEO domain fix, hero LCP, senior copy, View work CTA, Showcase compa
 ### Next Steps
 
 - None - task complete
+
+
+## Session 2: Vertical scrolling and frontend specs
+
+**Date**: 2026-07-19
+**Task**: Vertical scrolling and frontend specs
+**Branch**: `feat/vertical-scrolling-complete`
+
+### Summary
+
+Converted the portfolio to native vertical scrolling, retained desktop section navigation with scroll tracking, removed obsolete horizontal navigation code, and completed the project-specific frontend Trellis guidelines.
+
+### Main Changes
+
+(Add details)
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `f700a48` | (see git log) |
+| `c7b81da` | (see git log) |
+
+### Testing
+
+- [OK] (Add test results)
+
+### Status
+
+[OK] **Completed**
+
+### Next Steps
+
+- None - task complete
