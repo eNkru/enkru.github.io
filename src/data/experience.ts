@@ -15,7 +15,8 @@ export const experience: ExperienceEntry[] = [
     title: "SKYTV",
     role: "Contract Senior Developer",
     period: "2025 – Present",
-    description: "Help Metadata and Curation team to build the integration platform.",
+    description:
+      "Contracted with the Metadata and Curation team to design and deliver integration platform services for content workflows.",
     tags: ["Java", "SpringBoot", "Spring Reactive", "Docker", "AI"],
   },
   {
@@ -24,7 +25,8 @@ export const experience: ExperienceEntry[] = [
     title: "Xero",
     role: "Contract Senior Developer",
     period: "2024 – 2025",
-    description: "Enhanced Xero's website for improved user experiences, focusing on performance and interface interactions.",
+    description:
+      "Contracted on Xero's public website, improving performance and interaction quality across customer-facing pages.",
     tags: ["React", "TypeScript", "UX", "AI"],
   },
   {
@@ -33,7 +35,8 @@ export const experience: ExperienceEntry[] = [
     title: "NZ Customs",
     role: "Contract Senior Developer",
     period: "2021 – 2024",
-    description: "Developed the NZ Traveller Declaration system and trade facilitation platforms, supporting digital border processes.",
+    description:
+      "Delivered core services for the NZ Traveller Declaration and trade facilitation platforms that support digital border processes.",
     tags: ["Java", "SpringBoot", "Microservices", "Docker", "Azure", "OCP"],
   },
   {
@@ -42,7 +45,8 @@ export const experience: ExperienceEntry[] = [
     title: "Mercury",
     role: "Contract Senior Developer",
     period: "2020 – 2021",
-    description: "Built Mercury's public website and integrated energy service APIs for customer-facing platforms.",
+    description:
+      "Delivered Mercury's public website and energy service API integrations for customer-facing digital platforms.",
     tags: ["React", "NodeJS", "Integration", "AWS"],
   },
   {
@@ -52,7 +56,7 @@ export const experience: ExperienceEntry[] = [
     role: "Contract Technical Lead",
     period: "2017 – 2020",
     description:
-      "Led the One News digital team development, delivering real-time news experiences. Supported other teams with deep platform expertise.",
+      "Led the One News digital engineering team, shipping real-time news experiences and advising peer teams on platform architecture.",
     tags: ["Tech Lead", "Java", "React", "NodeJS", "AWS", "AEM"],
   },
   {
@@ -62,7 +66,7 @@ export const experience: ExperienceEntry[] = [
     role: "Senior Developer",
     period: "2012 – 2017",
     description:
-      "Grew quickly to senior level. Responsible for many back-end / integration services in the organisation. Led the dev team for several projects.",
+      "Progressed to senior developer; owned backend and integration services across the organisation and led delivery on multiple projects.",
     tags: ["Java", "Microservices", "AWS", "SpringBoot"],
   },
   {
@@ -72,7 +76,7 @@ export const experience: ExperienceEntry[] = [
     role: "Software Developer",
     period: "2011 – 2012",
     description:
-      "Worked as a consultant providing solutions to well-known NZ companies including Fonterra, NZ Post, and Auckland Transport.",
+      "Consulting engagements delivering software solutions for NZ enterprises including Fonterra, NZ Post, and Auckland Transport.",
     tags: ["Java", ".NET", "Consulting", "Integration"],
   },
   {
@@ -82,7 +86,7 @@ export const experience: ExperienceEntry[] = [
     role: "Developer and Analyst",
     period: "2007 – 2011",
     description:
-      "Worked in a team to deliver quality management software to the corrugated industry and provided Data Warehouse / ETL reports to the business.",
+      "Built quality management software for the corrugated industry and delivered Data Warehouse / ETL reporting for the business.",
     tags: ["Java", "Data Warehouse", "ETL", "SQL"],
   },
   {
@@ -91,7 +95,7 @@ export const experience: ExperienceEntry[] = [
     title: "University of Auckland",
     role: "BSc, Computer Science and Information Systems",
     period: "2005 – 2007",
-    description: "Studied at New Zealand's leading university.",
+    description: "Computer Science and Information Systems studies at New Zealand's leading university.",
     tags: ["Computer Science", "Information Systems"],
   },
 ]

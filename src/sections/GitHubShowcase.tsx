@@ -18,7 +18,7 @@ const fadeUp = {
 }
 
 export function GitHubShowcase() {
-  const { starredRepos, languageStats, loading, totalStars, totalForks, repos } = useGitHubRepos()
+  const { starredRepos, featuredRepos, languageStats, loading, totalStars, totalForks, repos } = useGitHubRepos()
 
   return (
     <div className="cyber-section w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden flex items-start justify-center px-6 py-16 pb-24 relative">
@@ -105,20 +105,22 @@ export function GitHubShowcase() {
             </motion.div>
 
             {/* Featured repos heading */}
-            {starredRepos.length > 0 && (
+            {featuredRepos.length > 0 && (
               <motion.div variants={fadeUp} className="mb-4">
                 <h3 className="font-mono text-foreground font-semibold text-sm uppercase tracking-wider flex items-center gap-2">
-                  <Star size={14} strokeWidth={1.5} className="text-accent" />
+                  <Star size={14} strokeWidth={1.5} className="text-accent" aria-hidden="true" />
                   Featured Repositories
-                  <span className="cyber-label text-muted-foreground ml-1">(top {Math.min(4, starredRepos.length)} of {starredRepos.length})</span>
+                  <span className="cyber-label text-muted-foreground ml-1">
+                    ({featuredRepos.length} of {repos.length})
+                  </span>
                 </h3>
               </motion.div>
             )}
 
-            {/* Repo cards grid — only repos with stars */}
-            {starredRepos.length > 0 && (
+            {/* Repo cards — pin first, then stars, then recent */}
+            {featuredRepos.length > 0 && (
               <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {starredRepos.slice(0, 4).map((repo) => (
+                {featuredRepos.map((repo) => (
                   <motion.div key={repo.id} variants={fadeUp}>
                     <GitHubRepoCard repo={repo} />
                   </motion.div>

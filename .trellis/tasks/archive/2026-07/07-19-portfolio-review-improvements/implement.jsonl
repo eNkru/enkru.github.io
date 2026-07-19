@@ -1,0 +1,5 @@
+{"file": ".trellis/spec/frontend/index.md", "reason": "Frontend guidelines index"}
+{"file": ".trellis/spec/frontend/component-guidelines.md", "reason": "Component patterns for ShowcaseCard/Intro/Contact"}
+{"file": ".trellis/spec/frontend/hook-guidelines.md", "reason": "GitHub featured selection hook patterns"}
+{"file": ".trellis/spec/frontend/quality-guidelines.md", "reason": "Quality standards for SEO/a11y edits"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Avoid duplicating constants/URL base"}

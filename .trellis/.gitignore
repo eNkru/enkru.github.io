@@ -1,0 +1,42 @@
+# Developer identity (local only)
+.developer
+
+# Current task pointer (each dev works on different task)
+.current-task
+
+# Session/window scoped runtime state
+.runtime/
+
+# Template sync hash cache (local)
+.template-hashes.json
+
+# Ralph Loop state file
+.ralph-state.json
+
+# Agent runtime files
+.agents/
+.agent-log
+.session-id
+
+# Task directory runtime files
+.plan-log
+
+# Atomic update temp files
+*.tmp
+
+# Update backup directories
+.backup-*
+
+# Conflict resolution temp files
+*.new
+
+# Worktrees / caches
+worktrees/
+.cache/
+
+# OS junk
+.DS_Store
+
+# Python cache
+**/__pycache__/
+**/*.pyc
