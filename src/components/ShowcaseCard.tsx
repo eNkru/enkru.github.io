@@ -38,6 +38,7 @@ export function ShowcaseCard({ title, images, url, description, role, techStack,
         href={url}
         target="_blank"
         rel="noopener noreferrer"
+        data-theme-showcase-image
         className="relative aspect-video bg-background overflow-hidden border-b border-border block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         aria-label={`Visit ${title}`}
       >
