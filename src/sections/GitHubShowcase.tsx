@@ -21,7 +21,7 @@ export function GitHubShowcase() {
   const { starredRepos, featuredRepos, languageStats, loading, totalStars, totalForks, repos } = useGitHubRepos()
 
   return (
-    <div className="cyber-section w-screen min-h-screen lg:h-screen overflow-y-auto scrollbar-hidden flex items-start justify-center px-6 py-16 pb-24 relative">
+    <div className="cyber-section w-full min-h-screen flex items-start justify-center px-6 py-16 relative">
       <div className="max-w-6xl w-full">
         {/* Title */}
         <motion.div
@@ -183,9 +183,6 @@ export function GitHubShowcase() {
           </div>
         )}
       </div>
-
-      {/* Scroll-more hint */}
-      <div className="sticky bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none -mt-12 z-10" />
     </div>
   )
 }

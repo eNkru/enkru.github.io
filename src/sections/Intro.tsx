@@ -8,7 +8,7 @@ export interface IntroProps {
 
 export function Intro({ onViewWork }: IntroProps) {
   return (
-    <div className="cyber-section w-screen h-screen overflow-hidden flex items-center justify-center">
+    <div className="cyber-section w-full min-h-screen flex items-center justify-center py-16">
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
@@ -122,9 +122,8 @@ export function Intro({ onViewWork }: IntroProps) {
         >
           <div className="flex items-center gap-3 text-muted-foreground/40">
             <span className="cyber-label hidden sm:inline">Scroll</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-            <span className="cyber-label sm:hidden">Swipe</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            <span className="cyber-label sm:hidden">Scroll</span>
           </div>
           <span className="cyber-label text-muted-foreground/25 hidden sm:inline">or use the dots to navigate</span>
         </motion.div>

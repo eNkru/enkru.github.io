@@ -12,7 +12,7 @@ export function SectionDots({ current, onChange, labels }: SectionDotsProps) {
 
   return (
     <nav
-      className="fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-50"
+      className="fixed right-4 top-1/2 -translate-y-1/2 hidden min-[1000px]:flex flex-col gap-3 z-50"
       aria-label="Section navigation"
     >
       {labels.map((label, i) => (
