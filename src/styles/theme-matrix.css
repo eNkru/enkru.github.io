@@ -72,9 +72,18 @@
   color: #fff;
 }
 
+/* ── Focus rings sit inside the chamfer — clip-path clips anything painted
+      outside the border box, which would erase an offset outline entirely. ── */
 .theme-matrix :focus-visible {
   outline: 2px solid var(--color-ring);
-  outline-offset: 3px;
+  outline-offset: -4px;
+}
+
+.theme-matrix .v-cell:focus-visible,
+.theme-matrix .v-btn:focus-visible,
+.theme-matrix .v-input:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: -4px;
 }
 
 /* ── Chamfered, neon-edged surfaces ── */

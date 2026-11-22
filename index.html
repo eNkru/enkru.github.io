@@ -25,7 +25,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fonts: Load only essentials, theme-specific fonts loaded conditionally via CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Apply the persisted theme before first paint to avoid a light-mode flash -->
+    <script>
+      try {
+        var storedTheme = localStorage.getItem('portfolio-theme');
+        if (storedTheme === 'old' || storedTheme === 'matrix') {
+          document.documentElement.classList.remove('theme-paper');
+          document.documentElement.classList.add('theme-' + storedTheme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', storedTheme === 'old' ? '#16162a' : '#12121e');
+        }
+      } catch (e) {}
+    </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXHWQVP8L9"></script>
     <script>

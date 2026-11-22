@@ -17,7 +17,7 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
       className="v-cell v-cell-hover group flex h-full flex-col p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <div className="flex items-start justify-between gap-3">
-        <h4 className="text-[15px] font-semibold tracking-[-0.015em] text-foreground break-all">
+        <h4 className="text-[15px] font-semibold tracking-[-0.015em] text-foreground break-words">
           {repo.name}
         </h4>
         <ArrowUpRight
