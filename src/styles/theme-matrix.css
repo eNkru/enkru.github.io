@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════
+   Theme: Matrix — neon terminal / glitch
+   Applied via <html class="theme-matrix">
+   Keeps the original cyberpunk identity as an opt-in.
+   ═══════════════════════════════════════════════ */
+
+.theme-matrix {
+  color-scheme: dark;
+
+  --font-heading: "Orbitron", "Share Tech Mono", monospace;
+  --font-sans:    "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  --font-mono:    "Share Tech Mono", "JetBrains Mono", monospace;
+
+  --color-background:        #12121e;
+  --color-foreground:        #e0e0e0;
+  --color-card:              #18182a;
+  --color-muted:             #20203a;
+  --color-muted-foreground:  #8b8b9e;
+  --color-accent:            #00ff88;
+  --color-accent-secondary:  #ff00ff;
+  --color-accent-tertiary:   #00d4ff;
+  --color-border:            #2a2a3a;
+  --color-input:             #12121a;
+  --color-ring:              #00ff88;
+  --color-destructive:       #ff3366;
+
+  /* Square, chamfered surfaces */
+  --radius-card:  0px;
+  --radius-btn:   0px;
+  --radius-chip:  0px;
+  --radius-pill:  0px;
+
+  --shadow-neon:             0 0 5px #00ff88, 0 0 10px #00ff8840;
+  --shadow-neon-lg:          0 0 10px #00ff88, 0 0 20px #00ff8860, 0 0 40px #00ff8830;
+
+  --clip-chamfer: polygon(
+    0 10px, 10px 0,
+    calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 0 calc(100% - 10px)
+  );
+  --clip-chamfer-sm: polygon(
+    0 6px, 6px 0,
+    calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px)
+  );
+
+  --paper-band:              #18182a;
+  --paper-band-ink:          #00ff88;
+  --paper-glass:             rgba(18, 18, 30, 0.82);
+}
+
+/* ── Page-wide scanlines ── */
+.theme-matrix body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+.theme-matrix ::selection {
+  background: rgba(0, 255, 136, 0.25);
+  color: #fff;
+}
+
+.theme-matrix :focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+/* ── Chamfered, neon-edged surfaces ── */
+.theme-matrix .v-cell {
+  clip-path: var(--clip-chamfer);
+}
+.theme-matrix .v-cell-hover:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-1px);
+}
+
+/* ── Square pills with technical tracking ── */
+.theme-matrix .v-pill {
+  clip-path: var(--clip-chamfer-sm);
+  background: rgba(0, 255, 136, 0.08);
+  color: rgba(0, 255, 136, 0.85);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 10px;
+}
+
+/* ── Buttons ── */
+.theme-matrix .v-btn {
+  clip-path: var(--clip-chamfer-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12.5px;
+}
+.theme-matrix .v-btn-primary {
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+.theme-matrix .v-btn-primary:hover {
+  background: var(--color-accent);
+  color: var(--color-background);
+  box-shadow: var(--shadow-neon);
+}
+.theme-matrix .v-btn-ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  backdrop-filter: none;
+}
+.theme-matrix .v-btn-ghost:hover {
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ── Kickers and titles ── */
+.theme-matrix .v-kicker {
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.35);
+}
+.theme-matrix .v-title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(0, 255, 136, 0.2);
+}
+
+/* ── Form fields ── */
+.theme-matrix .v-input {
+  clip-path: var(--clip-chamfer-sm);
+  background: var(--color-input);
+  border: 1px solid var(--color-border);
+  padding: 0.7rem 0.9rem;
+  color: var(--color-accent);
+}
+.theme-matrix .v-input::placeholder {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+.theme-matrix .v-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-neon);
+}
+
+/* ── Header ── */
+.theme-matrix .site-header {
+  backdrop-filter: blur(8px);
+}

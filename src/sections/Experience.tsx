@@ -1,115 +1,139 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { experience } from '../data/experience'
-import { CyberSectionHeading } from '../components/cyber'
+import { PaperSectionHeading } from '../components/PaperSectionHeading'
 import { ChevronDown } from 'lucide-react'
+
+const fadeUp = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' } as const,
+}
 
 export function Experience() {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   return (
-    <div className="cyber-section w-full min-h-screen flex items-start justify-center px-6 py-16 relative">
-      <div className="max-w-4xl w-full min-h-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <CyberSectionHeading
-            title="Experience"
-            subtitle="// mission log"
-            accent="magenta"
+    <div className="v-section w-full">
+      <div className="v-page">
+        <motion.div {...fadeUp} transition={{ duration: 0.5 }}>
+          <PaperSectionHeading
+            index="05"
+            kicker="Experience"
+            title="Where I've worked, and what I was responsible for."
+            lede="Twenty years across consulting and product teams. Expand an entry for the stack behind it."
           />
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line — neon rail */}
-          <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-accent-secondary/60 via-accent-secondary/30 to-accent/20" />
+        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.32fr)_minmax(0,0.68fr)] lg:gap-16">
+          {/* ── Rail: period + org ── */}
+          <div className="hidden lg:block">
+            <ol className="sticky top-24 space-y-0">
+              {experience.map((entry, index) => (
+                <motion.li
+                  key={entry.id}
+                  {...fadeUp}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
+                  className="relative border-t border-border py-3 pl-4 first:border-t-0 first:pt-0"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`absolute left-0 top-[1.15rem] h-1 w-1.5 rounded-full ${
+                      expandedId === entry.id ? 'bg-[var(--color-accent)]' : 'bg-border'
+                    }`}
+                  />
+                  <p className="v-meta text-[10.5px] uppercase tracking-[0.12em]">{entry.period}</p>
+                  <p className="mt-0.5 text-[13.5px] font-medium text-foreground">{entry.title}</p>
+                </motion.li>
+              ))}
+            </ol>
+          </div>
 
-          <div className="space-y-8 pb-12">
+          {/* ── Timeline cards ── */}
+          <ol className="space-y-3">
             {experience.map((entry, index) => {
               const isExpanded = expandedId === entry.id
               return (
-                <motion.div
+                <motion.li
                   key={entry.id}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="relative pl-16 sm:pl-20"
+                  transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.2) }}
                 >
-                  {/* Timeline node */}
-                  <div
-                    className="absolute left-4 sm:left-6 top-3 w-5 h-5 bg-background border-2 border-accent-secondary/60 z-10 flex items-center justify-center rotate-45"
-                    style={{ clipPath: 'var(--clip-chamfer-sm)' }}
-                  >
-                    <div className="w-1.5 h-1.5 bg-accent-secondary" />
-                  </div>
-
-                  {/* Mission dossier card */}
-                  <button
-                    onClick={() => setExpandedId(isExpanded ? null : entry.id)}
-                    className="cyber-card w-full text-left overflow-hidden group p-0 hover:transform-none"
-                  >
-                    <div className="p-4">
-                      <div className="flex items-center gap-3 mb-3">
+                  <article className="v-cell v-cell-hover overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setExpandedId(isExpanded ? null : entry.id)}
+                      aria-expanded={isExpanded}
+                      aria-controls={`experience-details-${entry.id}`}
+                      className="w-full cursor-pointer p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+                    >
+                      <div className="flex items-start gap-4">
                         <img
                           src={entry.logo}
-                          alt={`${entry.title} logo`}
+                          alt=""
                           loading="lazy"
-                          className="w-8 h-8 sm:w-10 sm:h-10 object-contain bg-card border border-border p-1 shrink-0"
-                          style={{ clipPath: 'var(--clip-chamfer-sm)' }}
+                          width={40}
+                          height={40}
+                          className="h-10 w-10 shrink-0 bg-muted object-contain p-1.5"
+                          style={{ borderRadius: 'calc(var(--radius-btn) * 0.85)' }}
                         />
-                        <div className="min-w-0">
-                          <h3 className="font-mono text-foreground font-semibold text-sm sm:text-base leading-tight truncate">{entry.title}</h3>
-                          <p className="text-accent-secondary text-xs sm:text-sm font-mono font-medium truncate">{entry.role}</p>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                            <h3 className="text-[16px] font-semibold tracking-[-0.015em] text-foreground">
+                              {entry.title}
+                            </h3>
+                            <span className="v-meta text-[11px] uppercase tracking-[0.1em]">
+                              {entry.period}
+                            </span>
+                          </div>
+                          <p className="mt-0.5 text-[13.5px] text-muted-foreground">{entry.role}</p>
+                          <p className="mt-2.5 text-[14px] leading-relaxed text-foreground/85">
+                            {entry.description}
+                          </p>
                         </div>
-                      </div>
-                      {entry.period && <p className="cyber-label text-muted-foreground mb-2">{entry.period}</p>}
-                      <p className="text-foreground/70 text-sm leading-relaxed">{entry.description}</p>
-
-                      {/* Tech tags */}
-                      <AnimatePresence>
-                        {isExpanded && entry.tags.length > 0 && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-border">
-                              {entry.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="px-2 py-0.5 bg-accent-secondary/10 text-accent-secondary/80 text-[10px] font-mono tracking-wider border border-accent-secondary/20"
-                                  style={{ clipPath: 'var(--clip-chamfer-sm)' }}
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* Expand hint */}
-                      <div className="flex items-center gap-1 mt-3 text-muted-foreground font-mono text-[10px] uppercase tracking-wider">
                         <ChevronDown
-                          size={10}
-                          strokeWidth={1.5}
-                          className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                          size={16}
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                          className={`mt-1 shrink-0 text-muted-foreground transition-transform duration-200 ${
+                            isExpanded ? 'rotate-180' : ''
+                          }`}
                         />
-                        {isExpanded ? 'Hide tech stack' : 'Show tech stack'}
                       </div>
-                    </div>
-                  </button>
-                </motion.div>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isExpanded && (
+                        <motion.div
+                          id={`experience-details-${entry.id}`}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-border px-5 py-4">
+                            <p className="v-meta mb-2.5 text-[10.5px] uppercase tracking-[0.14em]">
+                              Stack
+                            </p>
+                            <ul className="flex flex-wrap gap-1.5">
+                              {entry.tags.map((tag) => (
+                                <li key={tag} className="v-pill">
+                                  {tag}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </article>
+                </motion.li>
               )
             })}
-          </div>
+          </ol>
         </div>
       </div>
     </div>

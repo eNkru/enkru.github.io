@@ -14,7 +14,7 @@ Use `useState` inside the component that owns a transient interaction:
 
 - `ShowcaseCard.tsx`: current carousel image and details disclosure.
 - `Experience.tsx`: the currently expanded timeline entry.
-- `SectionDots.tsx`: the hovered navigation label.
+- `PaperHeader.tsx`: whether the page has scrolled past the header hairline.
 
 Prefer updater functions when the next value depends on the previous value:
 

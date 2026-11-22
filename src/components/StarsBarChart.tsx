@@ -43,8 +43,8 @@ export function StarsBarChart({ repos }: StarsBarChartProps) {
                 x={labelWidth - 8}
                 y={y + barHeight / 2 + 4}
                 textAnchor="end"
-                fill={isHovered ? '#ffffff' : '#94a3b8'}
-                fontSize="11"
+                fill={isHovered ? 'var(--color-foreground)' : 'var(--color-muted-foreground)'}
+                fontSize="11.5"
                 fontFamily="inherit"
                 className="transition-all duration-200"
                 style={{ fontWeight: isHovered ? 700 : 500 }}
@@ -58,8 +58,8 @@ export function StarsBarChart({ repos }: StarsBarChartProps) {
                 y={y + 2}
                 width={barMaxWidth}
                 height={barHeight - 4}
-                rx={4}
-                fill="rgba(255,255,255,0.03)"
+                rx={5}
+                fill="var(--color-muted)"
               />
 
               {/* Colored bar */}
@@ -68,9 +68,9 @@ export function StarsBarChart({ repos }: StarsBarChartProps) {
                 y={y + 2}
                 width={isHovered ? barWidth + 8 : barWidth}
                 height={barHeight - 4}
-                rx={4}
+                rx={5}
                 fill={langColor}
-                opacity={isHovered ? 0.9 : 0.55}
+                opacity={isHovered ? 0.9 : 0.6}
                 initial={{ width: 0 }}
                 animate={{ width: isHovered ? barWidth + 8 : barWidth }}
                 transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
@@ -80,8 +80,8 @@ export function StarsBarChart({ repos }: StarsBarChartProps) {
               <text
                 x={labelWidth + barWidth + 12}
                 y={y + barHeight / 2 + 4}
-                fill={isHovered ? '#fbbf24' : '#64748b'}
-                fontSize="11"
+                fill={isHovered ? 'var(--color-foreground)' : 'var(--color-muted-foreground)'}
+                fontSize="11.5"
                 fontFamily="inherit"
                 fontWeight={isHovered ? 700 : 500}
                 className="transition-all duration-200"

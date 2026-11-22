@@ -30,12 +30,12 @@ public/
 ## Module Ownership
 
 - Put a full page section in `src/sections/`. Examples: `Experience.tsx`, `GitHubShowcase.tsx`, and `Contact.tsx`.
-- Put reusable page UI in `src/components/`. Examples: `ShowcaseCard.tsx`, `SectionDots.tsx`, and `LanguageDonut.tsx`.
+- Put reusable page UI in `src/components/`. Examples: `ShowcaseCard.tsx`, `PaperHeader.tsx`, `PaperSectionHeading.tsx`, and `LanguageDonut.tsx`.
 - Put generic visual primitives in `src/components/cyber/` and export them through `src/components/cyber/index.ts`.
 - Put static portfolio content and its domain interface together in `src/data/`. `showcases.ts` owns `Showcase`; `experience.ts` owns `ExperienceEntry`.
 - Put React lifecycle, fetching, and cache ownership in `src/hooks/`. Pure selection logic stays outside hooks; `selectFeaturedRepos` is in `src/data/github.ts`, while `useGitHubRepos` invokes it.
 - Put framework-independent transformations in `src/utils/`. `computeLanguageStats` in `src/utils/github-languages.ts` is the local example.
-- Put global tokens and reusable utilities in `src/styles/cyber-base.css`; keep theme overrides isolated in `theme-light.css` and `theme-old.css`.
+- Put global tokens and reusable utilities in `src/styles/cyber-base.css`; keep theme overrides isolated in `theme-paper.css`, `theme-old.css` and `theme-matrix.css`.
 - Put deployable static assets in `public/` and reference them with root-relative paths such as `/img/aboutme2.jpg`.
 
 ## Dependency Direction

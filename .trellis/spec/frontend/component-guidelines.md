@@ -33,12 +33,13 @@ Sections live under `src/sections/`, shared UI under `src/components/`. Data is 
 
 ## Accessibility
 
-### Vertical section navigation
+### Section navigation
 
 - All viewport sizes use one native vertical document flow; do not reintroduce viewport-sized horizontal slides or custom wheel/swipe interception.
 - Stable `id`s remain `section-intro`, `section-about`, … (`SECTION_IDS` in `App.tsx`). Navigation callbacks use `scrollIntoView` rather than owning section translation state.
-- Desktop section dots are hidden below `1000px`, scroll to the matching stable ID, and expose the section observed near the viewport centre through `aria-current`.
-- Section shells use `w-full`, not `w-screen`. `100vw` can include the browser scrollbar width and create unwanted horizontal overflow on a vertically scrolling page.
+- `PaperHeader` owns navigation: in-page anchor links that expose the section observed near the viewport centre through `aria-current`. Desktop shows one row; below `768px` the links move to a second, horizontally scrollable row with a distinct `aria-label`.
+- Anchor targets carry `scroll-margin-top` in `src/index.css` so the sticky header never covers a section title.
+- Section shells use `w-full` and `overflow-x-clip`, not `w-screen`. `100vw` can include the browser scrollbar width and create unwanted horizontal overflow on a vertically scrolling page.
 - Tall sections such as Open Source and Experience grow with their content. Avoid fixed viewport heights and nested `overflow-y-auto` containers unless the product explicitly requires an independent scroll region.
 
 ### Skip link
@@ -54,8 +55,14 @@ Sections live under `src/sections/`, shared UI under `src/components/`. Data is 
 
 ### Decorative chrome
 
-- Contact-style prefixes (`>`) and icon-only glyphs: `aria-hidden="true"`.
-- Section dots / theme toggles: `type="button"`, visible `focus-visible` ring, `aria-current` when applicable.
+- Icon-only glyphs and decorative rules: `aria-hidden="true"`.
+- Theme switches: `type="button"`, `aria-pressed`, `role="group"` with a label, visible `focus-visible` ring.
+
+### Editorial primitives
+
+- Section headings go through `PaperSectionHeading` (`index` + `kicker` + `title` + optional `lede`); do not hand-roll a heading block per section.
+- Reuse the `v-*` utilities from `cyber-base.css` (`v-page`, `v-section`, `v-kicker`, `v-title`, `v-lede`, `v-cell`, `v-cell-hover`, `v-pill`, `v-meta`, `v-btn`) instead of repeating Tailwind chains. Themes retune them through tokens, so a section restyled with raw utilities will not follow the theme switch.
+- Spacing between a heading and its content is the caller's job; `PaperSectionHeading` intentionally ships without a bottom margin.
 
 ---
 
@@ -65,3 +72,5 @@ Sections live under `src/sections/`, shared UI under `src/components/`. Data is 
 - Hover-only “more details” on Showcase cards.
 - Using `w-screen` for vertical section shells, which can produce a horizontal scrollbar when the browser reserves space for its vertical scrollbar.
 - Adding nested section scrollbars to compensate for fixed viewport heights; prefer natural document height.
+- Hardcoding `text-white` / `#94a3b8` inside SVG or chart code — use `var(--color-*)` so the theme switch applies.
+- Applying an opacity modifier to a `var()` colour (e.g. `bg-[var(--x)]/10`): Tailwind resolves the fallback to a literal hex, so the value stops following the theme. Use `color-mix()` or a token instead.

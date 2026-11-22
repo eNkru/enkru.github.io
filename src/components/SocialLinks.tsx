@@ -1,38 +1,40 @@
 import { Linkedin, Github, Mail } from 'lucide-react'
-import { cn } from './cyber/utils'
+import { cn } from '../utils/cn'
 
 const SOCIAL_LINKS = [
   {
     href: 'https://www.linkedin.com/in/huawuju/',
     icon: Linkedin,
     label: 'LinkedIn',
-    accent: 'text-accent-tertiary hover:border-accent-tertiary hover:shadow-[var(--shadow-neon-tertiary)]',
     external: true,
   },
   {
     href: 'https://github.com/enkru',
     icon: Github,
     label: 'GitHub',
-    accent: 'text-foreground hover:border-foreground hover:shadow-[0_0_5px_rgba(224,224,224,0.3)]',
     external: true,
   },
   {
     href: 'mailto:enkru2000@hotmail.com',
     icon: Mail,
     label: 'Email',
-    accent: 'text-accent-secondary hover:border-accent-secondary hover:shadow-[var(--shadow-neon-secondary)]',
     external: false,
   },
 ] as const
 
 interface SocialLinksProps {
   className?: string
+  /** Compact renders icon-only chips; default renders labelled buttons. */
+  compact?: boolean
 }
 
-export function SocialLinks({ className = 'flex justify-center gap-4' }: SocialLinksProps) {
+export function SocialLinks({
+  className = 'flex flex-wrap justify-center gap-2.5',
+  compact = false,
+}: SocialLinksProps) {
   return (
     <div className={className}>
-      {SOCIAL_LINKS.map(({ href, icon: Icon, label, accent, external }) => (
+      {SOCIAL_LINKS.map(({ href, icon: Icon, label, external }) => (
         <a
           key={label}
           href={href}
@@ -40,18 +42,20 @@ export function SocialLinks({ className = 'flex justify-center gap-4' }: SocialL
           rel={external ? 'noopener noreferrer' : undefined}
           aria-label={label}
           className={cn(
-            'flex items-center gap-2 px-4 py-2.5',
-            'font-mono text-[10px] uppercase tracking-[0.2em]',
-            'bg-card border border-border text-muted-foreground',
-            'transition-all duration-200',
-            'hover:-translate-y-0.5',
+            'inline-flex items-center gap-2 text-muted-foreground transition-colors duration-200',
+            'hover:bg-muted hover:text-foreground',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-            accent,
+            compact
+              ? 'h-8 w-8 justify-center'
+              : 'h-10 px-3.5 font-mono text-[11px] uppercase tracking-[0.12em]',
           )}
-          style={{ clipPath: 'var(--clip-chamfer-sm)' }}
+          style={{
+            borderRadius: 'var(--radius-chip)',
+            boxShadow: compact ? undefined : 'inset 0 0 0 1px var(--color-border)',
+          }}
         >
-          <Icon size={16} strokeWidth={1.5} />
-          <span className="hidden sm:inline">{label}</span>
+          <Icon size={compact ? 15 : 14} strokeWidth={1.6} aria-hidden="true" />
+          {!compact && <span>{label}</span>}
         </a>
       ))}
     </div>
