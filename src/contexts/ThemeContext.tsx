@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 
-export type Theme = 'old' | 'matrix' | 'light'
+export type Theme = 'paper' | 'old' | 'matrix'
 
 interface ThemeContextType {
   theme: Theme
@@ -10,16 +10,26 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-// Theme-specific font URLs
-const THEME_FONTS: Record<Theme, string> = {
+// Theme-specific font URLs. Paper uses the fonts already loaded in index.html.
+const THEME_FONTS: Partial<Record<Theme, string>> = {
   matrix: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap',
   old: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap',
-  light: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap',
+}
+
+const THEME_CLASSES: Record<Theme, string> = {
+  paper: 'theme-paper',
+  old: 'theme-old',
+  matrix: 'theme-matrix',
 }
 
 function loadThemeFont(theme: Theme) {
   const existingLink = document.getElementById('theme-font') as HTMLLinkElement | null
   const fontUrl = THEME_FONTS[theme]
+
+  if (!fontUrl) {
+    existingLink?.remove()
+    return
+  }
 
   if (existingLink) {
     if (existingLink.href === fontUrl) return // Already loaded
@@ -34,17 +44,17 @@ function loadThemeFont(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>('paper')
 
   useEffect(() => {
-    document.documentElement.classList.toggle('theme-matrix', theme === 'matrix')
-    document.documentElement.classList.toggle('theme-old', theme === 'old')
-    document.documentElement.classList.toggle('theme-light', theme === 'light')
+    for (const [key, className] of Object.entries(THEME_CLASSES)) {
+      document.documentElement.classList.toggle(className, key === theme)
+    }
     loadThemeFont(theme)
   }, [theme])
 
   const toggleTheme = useCallback(() => {
-    setTheme(prev => (prev === 'old' ? 'matrix' : prev === 'matrix' ? 'light' : 'old'))
+    setTheme(prev => (prev === 'paper' ? 'old' : prev === 'old' ? 'matrix' : 'paper'))
   }, [])
 
   return (

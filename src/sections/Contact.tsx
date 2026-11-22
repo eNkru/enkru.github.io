@@ -1,147 +1,195 @@
 import { useForm, ValidationError } from '@formspree/react'
 import { motion } from 'framer-motion'
-import { Check, Send } from 'lucide-react'
+import { Check, ArrowRight } from 'lucide-react'
 import { SocialLinks } from '../components/SocialLinks'
-import { CyberSectionHeading } from '../components/cyber'
+import { PaperSectionHeading } from '../components/PaperSectionHeading'
 
 const FORMSPREE_ID = 'xyzpanom'
+
+const fadeUp = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' } as const,
+}
 
 export function Contact() {
   const [state, handleSubmit] = useForm(FORMSPREE_ID)
 
   return (
-    <div className="cyber-section w-full min-h-screen flex flex-col items-center justify-center px-6 py-16 relative">
-      <div className="max-w-lg w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <CyberSectionHeading
-            title="Contact"
-            subtitle="// establish connection"
-            accent="magenta"
-          />
-        </motion.div>
+    <div className="v-section w-full">
+      <div className="v-page">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+          {/* ── Left: pitch ── */}
+          <div>
+            <motion.div {...fadeUp} transition={{ duration: 0.5 }}>
+              <PaperSectionHeading
+                index="06"
+                kicker="Contact"
+                title="Have a platform that needs untangling?"
+                lede="I take on contract and consulting engagements, usually around integration, platform modernisation and AI-assisted delivery. Tell me what you are working on."
+              />
+            </motion.div>
 
-        {state.succeeded ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-8"
-          >
-            <div
-              className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 text-accent mb-6 mx-auto border border-accent/30"
-              style={{ clipPath: 'var(--clip-chamfer)' }}
-            >
-              <Check size={28} strokeWidth={2} />
-            </div>
-            <p className="font-mono text-accent text-base uppercase tracking-wider">
-              Transmission received.
-            </p>
-            <p className="text-muted-foreground text-sm mt-2">
-              I'll get back to you soon.
-            </p>
+            <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.1 }} className="mt-8 space-y-4">
+              <a
+                href="mailto:enkru2000@hotmail.com"
+                className="group flex items-center justify-between gap-4 px-4 py-3.5 transition-colors duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                style={{ borderRadius: 'var(--radius-btn)', boxShadow: 'inset 0 0 0 1px var(--color-border)' }}
+              >
+                <span>
+                  <span className="v-meta block text-[10.5px] uppercase tracking-[0.14em]">Email</span>
+                  <span className="mt-0.5 block text-[14.5px] font-medium text-foreground">
+                    enkru2000@hotmail.com
+                  </span>
+                </span>
+                <ArrowRight
+                  size={16}
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                  className="shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </a>
+
+              <SocialLinks className="flex flex-wrap gap-2.5" />
+            </motion.div>
+          </div>
+
+          {/* ── Right: form ── */}
+          <motion.div {...fadeUp} transition={{ duration: 0.5, delay: 0.15 }}>
+            {state.succeeded ? (
+              <div
+                className="flex h-full flex-col items-start justify-center p-8"
+                style={{ borderRadius: 'var(--radius-card)', boxShadow: 'inset 0 0 0 1px var(--color-border)' }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="grid h-11 w-11 place-items-center rounded-full"
+                  style={{
+                    background: 'color-mix(in srgb, var(--color-accent-tertiary) 12%, transparent)',
+                    color: 'var(--color-accent-tertiary)',
+                  }}
+                >
+                  <Check size={20} strokeWidth={2} />
+                </span>
+                <p className="mt-5 text-[19px] font-semibold tracking-[-0.02em] text-foreground">
+                  Message received.
+                </p>
+                <p className="v-lede mt-2 text-[14px]">
+                  Thanks for reaching out — I'll reply from my personal address within a day or two.
+                </p>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="p-6 sm:p-8"
+                style={{
+                  borderRadius: 'var(--radius-card)',
+                  background: 'var(--color-card)',
+                  boxShadow: 'inset 0 0 0 1px var(--color-border)',
+                }}
+              >
+                <div className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="v-meta mb-1.5 block text-[10.5px] uppercase tracking-[0.14em]">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      required
+                      autoComplete="name"
+                      placeholder="Your name"
+                      className="v-input"
+                    />
+                    <ValidationError
+                      prefix="Name"
+                      field="name"
+                      errors={state.errors}
+                      className="mt-1.5 block text-[11.5px] text-destructive"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="v-meta mb-1.5 block text-[10.5px] uppercase tracking-[0.14em]">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      placeholder="you@company.com"
+                      className="v-input"
+                    />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="mt-1.5 block text-[11.5px] text-destructive"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="v-meta mb-1.5 block text-[10.5px] uppercase tracking-[0.14em]">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      placeholder="A sentence or two about the problem is plenty."
+                      className="v-input resize-none"
+                    />
+                    <ValidationError
+                      prefix="Message"
+                      field="message"
+                      errors={state.errors}
+                      className="mt-1.5 block text-[11.5px] text-destructive"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={state.submitting}
+                  className="v-btn v-btn-primary mt-7 w-full"
+                >
+                  {state.submitting ? (
+                    <>
+                      <span
+                        aria-hidden="true"
+                        className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-background/30 border-t-background"
+                      />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Send message
+                      <ArrowRight size={15} strokeWidth={1.75} aria-hidden="true" />
+                    </>
+                  )}
+                </button>
+
+                <p className="v-meta mt-3 text-center text-[11px]">
+                  Delivered via Formspree. No mailing list, no tracking pixels.
+                </p>
+              </form>
+            )}
           </motion.div>
-        ) : (
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="space-y-5"
-          >
-            <div>
-              <label htmlFor="name" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent" aria-hidden="true">{'>'}</span> Name
-              </label>
-              <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  required
-                  className="cyber-input"
-                />
-              </div>
-              <ValidationError prefix="Name" field="name" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
-            </div>
+        </div>
 
-            <div>
-              <label htmlFor="email" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent" aria-hidden="true">{'>'}</span> Email
-              </label>
-              <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-1/2 -translate-y-1/2 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  required
-                  className="cyber-input"
-                />
-              </div>
-              <ValidationError prefix="Email" field="email" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="cyber-label block mb-2 ml-1 flex items-center gap-1.5">
-                <span className="text-accent" aria-hidden="true">{'>'}</span> Message
-              </label>
-              <div className="relative">
-                <span data-theme-form-prefix className="absolute left-3 top-3 text-accent font-mono text-sm pointer-events-none select-none" aria-hidden="true">{'>'}</span>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  className="cyber-input resize-none min-h-[120px] pt-3"
-                />
-              </div>
-              <ValidationError prefix="Message" field="message" errors={state.errors} className="text-destructive text-xs mt-1 ml-1 font-mono" />
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              disabled={state.submitting}
-              className="cyber-button cyber-button-secondary w-full py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {state.submitting ? (
-                <span className="flex items-center gap-2">
-                  <span className="w-4 h-4 border-2 border-accent-secondary/30 border-t-accent-secondary rounded-full animate-spin" />
-                  Transmitting...
-                </span>
-              ) : (
-                <span className="flex items-center gap-2">
-                  <Send size={14} strokeWidth={1.5} aria-hidden="true" />
-                  Send Message
-                </span>
-              )}
-            </motion.button>
-          </motion.form>
-        )}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10"
-        >
-          <SocialLinks />
-        </motion.div>
-      </div>
-
-      {/* Footer */}
-      <div className="absolute bottom-6 left-0 right-0 z-10 w-full flex justify-center pb-2">
-        <p className="text-center text-muted-foreground font-mono text-xs tracking-[0.15em] uppercase">
-          © {new Date().getFullYear()} Howard Ju — All rights reserved
-        </p>
+        {/* ── Footer ── */}
+        <footer className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
+          <p className="v-meta text-[11.5px]">
+            © {new Date().getFullYear()} Howard Ju · Auckland, New Zealand
+          </p>
+          <p className="v-meta text-[11.5px]">
+            Built with React, Vite and Tailwind · Deployed on GitHub Pages
+          </p>
+        </footer>
       </div>
     </div>
   )

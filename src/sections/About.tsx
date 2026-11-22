@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
-import { CyberSectionHeading } from '../components/cyber'
+import { PaperSectionHeading } from '../components/PaperSectionHeading'
 
 const fadeUp = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-80px' } as const,
 }
@@ -26,99 +26,97 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
   return <span ref={ref}>{display}{suffix}</span>
 }
 
+const FACTS = [
+  'Financial media, telecommunications, energy and government sectors',
+  'Platforms for TVNZ, SKY, Mercury, Vector, Xero and NZ Customs',
+  'Integration architecture: REST APIs, microservices and API gateways',
+  'Recent focus on LLM integration, RAG and AI-augmented delivery',
+]
+
 export function About() {
   return (
-    <div className="cyber-section w-full min-h-screen flex items-center justify-center px-6 py-16">
-      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-16">
-        {/* Bio text */}
-        <div className="flex-1 space-y-6">
-          <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.6 }}
-          >
-            <CyberSectionHeading
-              title="About Me"
-              subtitle="// whoami"
-              accent="cyan"
-              align="left"
-              className="mb-0"
-            />
-          </motion.div>
+    <div className="v-section w-full">
+      <div className="v-page">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+          {/* ── Left: heading + stats ── */}
+          <div>
+            <motion.div {...fadeUp} transition={{ duration: 0.5 }}>
+              <PaperSectionHeading index="01" kicker="About" title="Twenty years of shipping systems that stay up." />
+            </motion.div>
 
-          <div className="space-y-4">
-            <motion.p
+            <motion.dl
               {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-foreground/80 leading-relaxed sm:text-base font-light"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-8 grid grid-cols-3 gap-px overflow-hidden"
+              style={{ background: 'var(--color-border)', borderRadius: 'var(--radius-card)' }}
             >
-              Senior full-stack and integration consultant with <strong className="text-accent font-semibold">20 years of experience</strong> building scalable web platforms and enterprise-grade systems.
-            </motion.p>
-            <motion.p
-              {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-foreground/80 leading-relaxed sm:text-base font-light"
-            >
-              I've worked across financial media, telecommunications, energy, and government sectors — delivering solutions for organisations including <span className="text-foreground font-medium">TVNZ, SKY, Mercury, Vector, Xero, and New Zealand Customs</span>.
-            </motion.p>
-            <motion.p
-              {...fadeUp}
-              transition={{ duration: 0.6, delay: 0.35 }}
-              className="text-foreground/80 leading-relaxed sm:text-base font-light"
-            >
-              I enjoy turning complex problems into clean, reliable systems and exploring how AI can enhance the way developers build software.
-            </motion.p>
-          </div>
-
-          {/* Quick stats — cyber stat cards */}
-          <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex gap-4 pt-4"
-          >
-            {[
-              { value: 20, suffix: '+', label: 'Years' },
-              { value: 8, suffix: '', label: 'Companies' },
-              { value: 6, suffix: '', label: 'Sectors' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex-1 text-center p-4 bg-card border border-border"
-                style={{ clipPath: 'var(--clip-chamfer-sm)' }}
-              >
-                <div className="text-2xl sm:text-3xl font-heading font-bold text-accent cyber-neon-text">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+              {[
+                { value: 20, suffix: '+', label: 'Years' },
+                { value: 8, suffix: '', label: 'Companies' },
+                { value: 6, suffix: '', label: 'Sectors' },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-card px-4 py-5">
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd className="m-0">
+                    <span className="block text-[clamp(22px,2.4vw,28px)] font-semibold leading-none tracking-[-0.03em] text-foreground tabular-nums">
+                      <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                    </span>
+                    <span className="v-meta mt-2 block text-[10.5px] uppercase tracking-[0.12em]">
+                      {stat.label}
+                    </span>
+                  </dd>
                 </div>
-                <div className="cyber-label mt-1.5">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Terminal code card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex-shrink-0 hidden md:block"
-        >
-          <div className="cyber-card-terminal w-64 sm:w-72 p-5 font-mono text-sm leading-relaxed">
-            {/* Traffic light dots — rendered by ::before in CSS, but we need manual here */}
-            <div className="flex gap-1.5 mb-4 -mt-0">
-              <div className="w-2.5 h-2.5 bg-destructive/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
-              <div className="w-2.5 h-2.5 bg-accent/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
-              <div className="w-2.5 h-2.5 bg-accent-tertiary/60" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
-            </div>
-            <div className="text-muted-foreground">{'//'} whoami</div>
-            <div><span className="text-accent-secondary">const</span> <span className="text-accent-tertiary">developer</span> <span className="text-muted-foreground">=</span> {'{'}</div>
-            <div className="pl-4"><span className="text-accent">name</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Howard Ju'</span><span className="text-muted-foreground">,</span></div>
-            <div className="pl-4"><span className="text-accent">role</span><span className="text-muted-foreground">:</span>             <span className="text-accent/80">'Senior Full-Stack &amp; Integration Consultant'</span><span className="text-muted-foreground">,</span></div>
-            <div className="pl-4"><span className="text-accent">location</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'Auckland, NZ'</span><span className="text-muted-foreground">,</span></div>
-            <div className="pl-4"><span className="text-accent">passion</span><span className="text-muted-foreground">:</span> <span className="text-accent/80">'AI × Dev'</span><span className="text-muted-foreground">,</span></div>
-            <div>{'}'}</div>
-            <div className="mt-2 text-muted-foreground">{'//'} always learning <span className="cyber-cursor" /></div>
+              ))}
+            </motion.dl>
           </div>
-        </motion.div>
+
+          {/* ── Right: prose + facts ── */}
+          <div className="lg:pt-2">
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="text-[clamp(17px,1.5vw,20px)] leading-[1.6] tracking-[-0.01em] text-foreground"
+            >
+              Senior full-stack and integration consultant with twenty years of experience
+              building scalable web platforms and enterprise-grade systems.
+            </motion.p>
+
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: 0.14 }}
+              className="v-lede mt-5"
+            >
+              I've worked across financial media, telecommunications, energy and government —
+              delivering solutions for organisations including TVNZ, SKY, Mercury, Vector, Xero
+              and New Zealand Customs.
+            </motion.p>
+
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="v-lede mt-4"
+            >
+              I enjoy turning complex problems into clean, reliable systems, and exploring how AI
+              can improve the way developers build software.
+            </motion.p>
+
+            <motion.ul
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: 0.26 }}
+              className="mt-8 space-y-3 border-t border-border pt-8"
+            >
+              {FACTS.map((fact) => (
+                <li key={fact} className="flex gap-3 text-[14.5px] leading-relaxed text-foreground/90">
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.55em] h-1 w-3 shrink-0 rounded-full bg-[var(--color-accent)]"
+                  />
+                  {fact}
+                </li>
+              ))}
+            </motion.ul>
+          </div>
+        </div>
       </div>
     </div>
   )

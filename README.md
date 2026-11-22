@@ -6,6 +6,22 @@ The online portfolio for [Howard Ju](https://enkru.github.io/) (Myself).
 
 React 19 + Vite + TypeScript + Tailwind CSS v4 + Framer Motion
 
+## Design system
+
+Three themes share one token-driven structure:
+
+| Theme | Class | Notes |
+|---|---|---|
+| Paper (default) | `theme-paper` | Warm paper, ink text, sage accent, hairline rules, 20px surfaces |
+| Slate | `theme-old` | Cool dark, blue accent, rounded |
+| Matrix | `theme-matrix` | Neon terminal, chamfered corners, scanlines |
+
+- Structural styles and the `v-*` editorial utilities live in `src/styles/base.css`.
+- Each theme only retunes tokens (`--color-*`, `--radius-*`, `--paper-*`) and a
+  few surface treatments, so section markup stays theme-agnostic.
+- The theme switch lives in the sticky header; the active theme is set on
+  `<html>` by `src/contexts/ThemeContext.tsx`.
+
 ## Development
 
 ```bash

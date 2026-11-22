@@ -3,13 +3,14 @@
    ═══════════════════════════════════════════════
    
    Base styles and utilities are loaded first, followed by
-   theme-specific overrides. This allows easier maintenance
-   and independent theme development.
+   theme overrides. Themes only retune tokens and a few
+   surface treatments, so section markup stays theme-agnostic.
    ═══════════════════════════════════════════════ */
 
-@import "./styles/cyber-base.css";
+@import "./styles/base.css";
 @import "./styles/theme-old.css";
-@import "./styles/theme-light.css";
+@import "./styles/theme-paper.css";
+@import "./styles/theme-matrix.css";
 
 
 /* Skip link for keyboard a11y */
@@ -18,21 +19,31 @@
   left: 1rem;
   top: 0;
   z-index: 100;
-  padding: 0.5rem 1rem;
-  background: var(--color-background, #000);
-  color: var(--color-foreground, #fff);
-  border: 1px solid var(--color-accent, #0f0);
-  font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  padding: 10px 14px;
+  background: var(--color-foreground, #000);
+  color: var(--color-background, #fff);
+  border-radius: var(--radius-chip, 10px);
+  font-family: var(--font-sans, system-ui);
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
-  transform: translateY(-120%);
-  transition: transform 150ms ease;
+  transform: translateY(-160%);
+  transition: transform var(--t-normal, 150ms) var(--ease, ease);
 }
 
 .skip-link:focus {
-  transform: translateY(1rem);
-  outline: 2px solid var(--color-ring, #0f0);
-  outline-offset: 2px;
+  transform: translateY(10px);
+  outline: 2px solid var(--color-ring, #000);
+  outline-offset: 3px;
+}
+
+/* Anchor offset so the sticky header does not cover section titles */
+section[id] {
+  scroll-margin-top: 110px;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 76px;
+  }
 }

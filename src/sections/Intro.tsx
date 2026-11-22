@@ -1,132 +1,174 @@
 import { motion } from 'framer-motion'
+import { ArrowRight, ArrowDown } from 'lucide-react'
 import { SocialLinks } from '../components/SocialLinks'
-import { ChevronRight } from 'lucide-react'
 
 export interface IntroProps {
   onViewWork?: () => void
+  onContact?: () => void
 }
 
-export function Intro({ onViewWork }: IntroProps) {
+const HERO_STATS = [
+  { value: '20', label: 'Years building software' },
+  { value: '8', label: 'Organisations' },
+  { value: '6', label: 'Sectors' },
+  { value: 'NZ', label: 'Auckland based' },
+]
+
+const rise = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0 },
+}
+
+export function Intro({ onViewWork, onContact }: IntroProps) {
   return (
-    <div className="cyber-section w-full min-h-screen flex items-center justify-center py-16">
-
-      {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
-
-        {/* Profile avatar — chamfered HUD frame */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative mb-10"
-        >
-          {/* Outer neon frame */}
-          <div
-            data-theme-avatar-frame
-            className="absolute inset-[-4px] bg-accent/20"
-            style={{ clipPath: 'var(--clip-chamfer)' }}
-          />
-          <div
-            data-theme-avatar-frame
-            className="absolute inset-[-2px] bg-accent/40"
-            style={{ clipPath: 'var(--clip-chamfer-sm)' }}
-          />
-          <img
-            src="/img/aboutme2.jpg"
-            alt="Howard Ju"
-            loading="eager"
-            fetchPriority="high"
-            width={176}
-            height={176}
-            data-theme-avatar
-            className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 object-cover"
-            style={{ clipPath: 'var(--clip-chamfer)' }}
-          />
-          {/* Status indicator */}
-          <div data-theme-status className="absolute -bottom-1 -right-1 w-4 h-4 bg-accent shadow-[var(--shadow-neon)] z-10" style={{ clipPath: 'var(--clip-chamfer-sm)' }} />
-        </motion.div>
-
-        {/* Name — glitched headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-          className="cyber-heading cyber-glitch text-5xl sm:text-7xl md:text-8xl font-black tracking-wider text-foreground mb-4"
-          data-text="Howard Ju"
-        >
-          Howard Ju
-        </motion.h1>
-
-        {/* Terminal subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-          className="font-mono text-sm sm:text-base text-accent/80 mb-2 flex items-center gap-1"
-        >
-          <ChevronRight size={14} strokeWidth={1.5} className="text-accent" aria-hidden="true" />
-          <span className="uppercase tracking-[0.15em]">Senior Full-Stack &amp; Integration Consultant</span>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-          className="font-mono text-xs sm:text-sm text-muted-foreground tracking-[0.1em] uppercase cyber-cursor"
-        >
-          20 years building enterprise web, integration &amp; cloud platforms
-        </motion.p>
-
-        {/* Divider */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="w-24 h-px bg-gradient-to-r from-transparent via-accent to-transparent mt-8 mb-8"
-        />
-
-        {/* Social links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <SocialLinks />
-        </motion.div>
-
-        {/* View work CTA */}
-        {onViewWork && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8"
-          >
-            <button
-              type="button"
-              onClick={onViewWork}
-              className="cyber-button inline-flex items-center gap-2"
+    <div className="v-section v-section-hero w-full">
+      <div className="v-page">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.72fr)] lg:gap-16">
+          {/* ── Copy ── */}
+          <div className="order-1">
+            <motion.p
+              initial="hidden"
+              animate="show"
+              variants={rise}
+              transition={{ duration: 0.5 }}
+              className="v-kicker"
             >
-              View work
-              <ChevronRight size={14} strokeWidth={1.5} aria-hidden="true" />
-            </button>
-          </motion.div>
-        )}
+              Senior Full-Stack &amp; Integration Consultant
+            </motion.p>
 
-        {/* Navigation hint */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 flex flex-col items-center gap-2"
-        >
-          <div className="flex items-center gap-3 text-muted-foreground/40">
-            <span className="cyber-label hidden sm:inline">Scroll</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-            <span className="cyber-label sm:hidden">Scroll</span>
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={rise}
+              transition={{ duration: 0.55, delay: 0.06 }}
+              className="v-title mt-4 text-[clamp(40px,6.2vw,76px)] leading-[1.02]"
+            >
+              Howard Ju
+            </motion.h1>
+
+            <motion.p
+              initial="hidden"
+              animate="show"
+              variants={rise}
+              transition={{ duration: 0.55, delay: 0.12 }}
+              className="v-lede mt-5 max-w-xl text-[clamp(16px,1.4vw,19px)]"
+            >
+              I design and build enterprise web, integration and cloud platforms — and
+              increasingly, the AI-assisted workflows that help teams ship them faster.
+            </motion.p>
+
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={rise}
+              transition={{ duration: 0.55, delay: 0.18 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              {onViewWork && (
+                <button type="button" onClick={onViewWork} className="v-btn v-btn-primary">
+                  View selected work
+                  <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                </button>
+              )}
+              {onContact && (
+                <button type="button" onClick={onContact} className="v-btn v-btn-ghost">
+                  Get in touch
+                </button>
+              )}
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={rise}
+              transition={{ duration: 0.55, delay: 0.24 }}
+              className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3"
+            >
+              <span className="v-meta flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent-tertiary)]"
+                />
+                Auckland, New Zealand
+              </span>
+              <span className="v-meta hidden sm:inline opacity-40">·</span>
+              <SocialLinks className="flex items-center gap-1.5" compact />
+            </motion.div>
           </div>
-          <span className="cyber-label text-muted-foreground/25 hidden sm:inline">or use the dots to navigate</span>
-        </motion.div>
+
+          {/* ── Portrait ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="order-2"
+          >
+            <div className="relative mx-auto max-w-[360px] lg:max-w-none">
+              <div
+                aria-hidden="true"
+                className="absolute -inset-3 border border-border/70"
+                style={{ borderRadius: 'calc(var(--radius-card) + 8px)' }}
+              />
+              <img
+                src="/img/aboutme2.jpg"
+                alt="Howard Ju"
+                loading="eager"
+                fetchPriority="high"
+                width={640}
+                height={640}
+                className="relative aspect-square w-full object-cover"
+                style={{ borderRadius: 'var(--radius-card)', boxShadow: 'var(--shadow-neon-lg)' }}
+              />
+              <div
+                className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-3 px-3 py-2 backdrop-blur-md"
+                style={{
+                  borderRadius: 'var(--radius-btn)',
+                  background: 'var(--paper-glass)',
+                  boxShadow: 'inset 0 0 0 1px var(--color-border)',
+                }}
+              >
+                <span className="font-mono text-[11px] tracking-[0.06em] text-foreground">
+                  howard-ju.profile
+                </span>
+                <span className="font-mono text-[11px] text-muted-foreground">BSc CS</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── Dark band: at a glance ── */}
+        <motion.dl
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 grid grid-cols-2 gap-px overflow-hidden md:grid-cols-4"
+          style={{ background: 'var(--color-border)', borderRadius: 'var(--radius-card)' }}
+        >
+          {HERO_STATS.map((stat) => (
+            <div
+              key={stat.label}
+              className="px-5 py-6"
+              style={{ background: 'var(--paper-band)', color: 'var(--paper-band-ink)' }}
+            >
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className="m-0">
+                <span className="block text-[clamp(24px,2.6vw,32px)] font-semibold leading-none tracking-[-0.03em]">
+                  {stat.value}
+                </span>
+                <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] opacity-60">
+                  {stat.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </motion.dl>
+
+        <div className="mt-10 flex justify-center">
+          <span className="v-meta flex items-center gap-2 opacity-70">
+            <ArrowDown size={13} strokeWidth={1.5} aria-hidden="true" />
+            Scroll to read more
+          </span>
+        </div>
       </div>
     </div>
   )

@@ -26,6 +26,7 @@ Static marketing site on GitHub Pages (`https://enkru.github.io`). Prefer small,
 - Before deleting assets: `rg` for path references; keep logos and referenced WebP.
 - After SEO or domain edits: `rg 'howardju\.com' index.html src public` must be empty in task scope.
 - Verify with `npm run build` and `npx tsc --noEmit` when TypeScript changed.
+- Verify all three themes (`Paper`, `Slate`, `Matrix`) render without horizontal overflow at 390px and 1440px after any layout or token change.
 - For section-layout changes, search for stale horizontal-navigation code and verify the page uses stable section IDs, native vertical scrolling, and no `w-screen` section shells.
 
 ---
@@ -44,4 +45,5 @@ Static marketing site on GitHub Pages (`https://enkru.github.io`). Prefer small,
 - [ ] Featured repo selection is pin → starred → recent, N=4
 - [ ] A11y: skip-link, section-dot `aria-current`, decorative `aria-hidden`
 - [ ] Images: no broken refs after asset cleanup
+- [ ] All three themes checked at mobile + desktop widths
 - [ ] Build + tsc clean

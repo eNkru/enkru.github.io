@@ -14,7 +14,7 @@ Do not suppress errors to make the build pass. Keep imports, parameters, and bra
 
 ## Type Organization
 
-- Colocate component prop interfaces with the component: `ShowcaseCardProps`, `SectionDotsProps`, and `IntroProps`.
+- Colocate component prop interfaces with the component: `ShowcaseCardProps`, `PaperHeaderProps`, and `IntroProps`.
 - Define static domain interfaces next to their data: `Showcase` in `src/data/showcases.ts`, `ExperienceEntry` in `src/data/experience.ts`, and `GitHubRepo` in `src/data/github.ts`.
 - Keep hook-only result and cache shapes inside the hook module when no other module constructs them (`CachedData`, `GitHubReposResult`).
 - Export a type only when another module consumes it. Use `import type` when importing types without runtime values.
