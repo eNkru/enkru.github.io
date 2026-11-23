@@ -147,17 +147,14 @@ export function Intro({ onViewWork, onContact }: IntroProps) {
           {HERO_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="px-5 py-6"
+              className="flex flex-col px-5 py-6"
               style={{ background: 'var(--paper-band)', color: 'var(--paper-band-ink)' }}
             >
-              <dt className="sr-only">{stat.label}</dt>
-              <dd className="m-0">
-                <span className="block text-[clamp(24px,2.6vw,32px)] font-semibold leading-none tracking-[-0.03em]">
-                  {stat.value}
-                </span>
-                <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] opacity-60">
-                  {stat.label}
-                </span>
+              <dt className="order-2 mt-2 font-mono text-[11px] uppercase tracking-[0.14em] opacity-60">
+                {stat.label}
+              </dt>
+              <dd className="order-1 m-0 block text-[clamp(24px,2.6vw,32px)] font-semibold leading-none tracking-[-0.03em]">
+                {stat.value}
               </dd>
             </div>
           ))}

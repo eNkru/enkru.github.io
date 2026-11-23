@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { ArrowUpRight, ChevronDown } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 export interface ShowcaseCardProps {
   title: string
@@ -28,6 +28,8 @@ export function ShowcaseCard({
 }: ShowcaseCardProps) {
   const [current, setCurrent] = useState(0)
   const [detailsOpen, setDetailsOpen] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const reduceMotion = useReducedMotion()
   const hasDetails = Boolean(description || problem)
   const panelId = `showcase-details-${title.replace(/\s+/g, '-').toLowerCase()}`
 
@@ -35,59 +37,68 @@ export function ShowcaseCard({
     setCurrent((prev) => (prev + 1) % images.length)
   }, [images.length])
 
+  // WCAG 2.2.2: auto-advance must be pausable (hover/focus) and respect reduced motion.
   useEffect(() => {
-    if (images.length <= 1) return
+    if (images.length <= 1 || paused || reduceMotion) return
     const timer = setInterval(next, 4000)
     return () => clearInterval(timer)
-  }, [images.length, next])
+  }, [images.length, next, paused, reduceMotion])
 
   return (
     <article className="v-cell v-cell-hover group flex h-full flex-col overflow-hidden">
       {/* ── Media ── */}
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
-        aria-label={`Visit ${title}`}
+      <div
+        className="relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
       >
-        <div
-          className={
-            feature
-              ? 'h-[clamp(240px,30vw,420px)] w-full'
-              : 'aspect-[16/10] w-full'
-          }
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative block overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+          aria-label={`Visit ${title}`}
         >
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={images[current]}
-              src={images[current]}
-              alt={`${title} screenshot ${current + 1}`}
-              loading="lazy"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] ${
-                feature ? 'object-top' : ''
-              }`}
-            />
-          </AnimatePresence>
-        </div>
+          <div
+            className={
+              feature
+                ? 'h-[clamp(240px,30vw,420px)] w-full'
+                : 'aspect-[16/10] w-full'
+            }
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={images[current]}
+                src={images[current]}
+                alt={`${title} screenshot ${current + 1}`}
+                loading="lazy"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className={`h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] ${
+                  feature ? 'object-top' : ''
+                }`}
+              />
+            </AnimatePresence>
+          </div>
+        </a>
 
-        {/* Carousel controls */}
+        {/* Carousel controls — siblings of the link, never nested inside it */}
         {images.length > 1 && (
-          <div className="absolute bottom-2.5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/25 px-2 py-1 backdrop-blur-sm">
+          <div
+            className="absolute bottom-2.5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/25 px-2 py-1 backdrop-blur-sm"
+            role="group"
+            aria-label={`${title} screenshots`}
+          >
             {images.map((_, i) => (
               <button
                 key={i}
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  setCurrent(i)
-                }}
-                aria-label={`Go to image ${i + 1}`}
+                onClick={() => setCurrent(i)}
+                aria-label={`Show image ${i + 1} of ${images.length}`}
                 aria-current={i === current ? 'true' : undefined}
                 className={`cursor-pointer rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   i === current ? 'h-1.5 w-4 bg-white' : 'h-1.5 w-1.5 bg-white/50 hover:bg-white/80'
@@ -96,7 +107,7 @@ export function ShowcaseCard({
             ))}
           </div>
         )}
-      </a>
+      </div>
 
       {/* ── Body ── */}
       <div className={`flex flex-1 flex-col ${feature ? 'p-6 sm:p-7' : 'p-5'}`}>

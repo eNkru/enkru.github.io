@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { MotionConfig } from 'framer-motion'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { PaperHeader, type NavItem } from './components/PaperHeader'
 import { Intro } from './sections/Intro'
@@ -97,7 +98,10 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      {/* Honour prefers-reduced-motion for JS-driven animations too */}
+      <MotionConfig reducedMotion="user">
+        <AppContent />
+      </MotionConfig>
     </ThemeProvider>
   )
 }

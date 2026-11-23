@@ -55,15 +55,12 @@ export function About() {
                 { value: 8, suffix: '', label: 'Companies' },
                 { value: 6, suffix: '', label: 'Sectors' },
               ].map((stat) => (
-                <div key={stat.label} className="bg-card px-4 py-5">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="m-0">
-                    <span className="block text-[clamp(22px,2.4vw,28px)] font-semibold leading-none tracking-[-0.03em] text-foreground tabular-nums">
-                      <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                    </span>
-                    <span className="v-meta mt-2 block text-[10.5px] uppercase tracking-[0.12em]">
-                      {stat.label}
-                    </span>
+                <div key={stat.label} className="flex flex-col bg-card px-4 py-5">
+                  <dt className="order-2 mt-2 font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted-foreground">
+                    {stat.label}
+                  </dt>
+                  <dd className="order-1 m-0 block text-[clamp(22px,2.4vw,28px)] font-semibold leading-none tracking-[-0.03em] text-foreground tabular-nums">
+                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                   </dd>
                 </div>
               ))}

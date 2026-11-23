@@ -59,6 +59,8 @@ export function Contact() {
             {state.succeeded ? (
               <div
                 className="flex h-full flex-col items-start justify-center p-8"
+                role="status"
+                aria-live="polite"
                 style={{ borderRadius: 'var(--radius-card)', boxShadow: 'inset 0 0 0 1px var(--color-border)' }}
               >
                 <span
@@ -155,6 +157,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={state.submitting}
+                  aria-busy={state.submitting}
                   className="v-btn v-btn-primary mt-7 w-full"
                 >
                   {state.submitting ? (

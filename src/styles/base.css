@@ -265,6 +265,11 @@
     outline: none;
     border-bottom-color: var(--color-foreground);
   }
+  /* Keep a real focus indicator — a 1px border colour change is too subtle alone */
+  .v-input:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
 
   /* ── Sticky site header ── */
   .site-header {
